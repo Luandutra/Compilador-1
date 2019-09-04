@@ -30,10 +30,5 @@ public class Leitura {
             System.out.println("Erro: Aquivo não encontado.\n" + e);
         }
         return leituraConfiguracao;
-    }
-    
-    
-    public static String confirmaPalavra(ArrayList<String> arq) {
-        return null;
     }   
 }
