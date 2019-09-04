@@ -10,7 +10,7 @@ public class Leitura {
     
     public static ArrayList<String> lerArquivo(String endereco){
         
-        ArrayList<String> leituraConfiguracao = new ArrayList<>();
+        ArrayList<String> leituraArquivo = new ArrayList<>();
         
         try {
             FileReader arquivo = new FileReader(endereco);
@@ -19,16 +19,16 @@ public class Leitura {
             try {                
                 while (linha != null) {
                    linha = lerArquivo.readLine();
-                   leituraConfiguracao.add(linha + "\n");
+                   leituraArquivo.add(linha + "\n");
                 }
                 arquivo.close();
-                return leituraConfiguracao;
+                return leituraArquivo;
             } catch (IOException e) {
                 System.out.println("Erro: Problema na leitura.\n" + e);
             }
         } catch (FileNotFoundException e) {
             System.out.println("Erro: Aquivo não encontado.\n" + e);
         }
-        return leituraConfiguracao;
+        return leituraArquivo;
     }   
 }

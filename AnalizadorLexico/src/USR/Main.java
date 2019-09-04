@@ -27,7 +27,7 @@ public class Main {
             ArrayList<String> arq = IO.Leitura.lerArquivo(arquivo);
             if(!arq.isEmpty()){
                 if(!arquivo.isEmpty() && !arquivo.isBlank()){
-                    REGEX.ExpressaoRegular.chamaRegex(arg, arq);
+                    REGEX.ExpressaoRegular.Regex(arg, arq);
                 } else{
                     System.out.println("Erro: Arquivo esta vazio ou em branco.");
                 }
