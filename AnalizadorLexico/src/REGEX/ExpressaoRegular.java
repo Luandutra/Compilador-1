@@ -72,10 +72,11 @@ public class ExpressaoRegular {
                 }
                 */
                 
+                
             }
         }
         
-        System.out.println(tolkens);
+        //System.out.println(tolkens);
         return null;
     }
 }
