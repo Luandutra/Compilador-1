@@ -19,7 +19,7 @@ public class Leitura {
             try {                
                 while (linha != null) {
                    linha = lerArquivo.readLine();
-                   leituraArquivo.add(linha + "\n");
+                   leituraArquivo.add(linha);
                 }
                 arquivo.close();
                 return leituraArquivo;
