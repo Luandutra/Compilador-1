@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) throws IOException{
         
         ArrayList<String> arguemtos = new ArrayList<>();
+        String reservadas = "C:\\Users\\DKtga\\Desktop\\Analizador Lexico\\Config\\reservadas.txt";
         String arquivo = "C:\\Users\\DKtga\\Desktop\\Analizador Lexico\\Config\\fatorial.txt";
         
         boolean arg = false;
@@ -25,9 +26,10 @@ public class Main {
         
         try {
             ArrayList<String> arq = IO.Leitura.lerArquivo(arquivo);
+            ArrayList<String> pr = IO.Leitura.lerArquivo(reservadas);
             if(!arq.isEmpty()){
                 if(!arquivo.isEmpty() && !arquivo.isBlank()){
-                    REGEX.ExpressaoRegular.OrganizadorRegex(arg, arq);
+                    REGEX.ExpressaoRegular.ComparadorRegex(arg, pr,arq);
                 } else{
                     System.out.println("Erro: Arquivo esta vazio ou em branco.");
                 }
