@@ -10,7 +10,7 @@ public class ExpressaoRegular {
         
         ArrayList<String[]> listaPalavras = new ArrayList<>();
         ArrayList<Tolkens> tolkens = new ArrayList<>();
-       
+        
         for(int x = 0; x < arq.size() - 1; x++){
             listaPalavras.add(arq.get(x).split(" "));
         }
@@ -65,8 +65,21 @@ public class ExpressaoRegular {
                     tolkens.add(new Tolkens("TK_string", "String", y, z));
                 }
                 
-                
+                /*
+                if(palavraReservada.contains(listaPalavras.get(y)[z])){
+                }else {
+                    if(matcher3.matches()){
+                    }else{
+                        Pattern pattern4 = Pattern.compile("[a-zA-Z]");
+                        Matcher matcher4 = pattern4.matcher(listaPalavras.get(y)[z]);
+                        if(matcher4.find()){
+                            tolkens.add(new Tolkens("TK_variavel", "Variavel", y, z));
+                        }
+                    }
+                }
+                */
 
+                
                 if(palavraReservada.contains(listaPalavras.get(y)[z])){
                 }else {
                     Pattern pattern4 = Pattern.compile("[a-zA-Z]");
@@ -75,7 +88,8 @@ public class ExpressaoRegular {
                         tolkens.add(new Tolkens("TK_variavel", "Variavel", y, z));
                     }
                 }
-
+                
+                
                 if(listaPalavras.get(y)[z].contains(";")){
                     tolkens.add(new Tolkens("TK_finallinha", "Fim de linha", y, z));
                 }
@@ -134,15 +148,13 @@ public class ExpressaoRegular {
                 }
                 */
 
-                /*
                 if(listaPalavras.get(y)[z].contains("++")){
                     tolkens.add(new Tolkens("TK_incremento", "Sinal de incremento", y, z));
                 }
-
+                
                 if(listaPalavras.get(y)[z].contains("--")){
                     tolkens.add(new Tolkens("TK_decremento", "Sinal de decremento", y, z));
                 }
-                */
 
             }
         }
