@@ -148,7 +148,7 @@ public class ExpressaoRegular {
                     tolkens.add(new Tolkens("TK_sub", "Sinal de subtração", y, z));
                 }
                 */
-
+                
                 if(listaPalavras.get(y)[z].contains("-")){
                     tolkens.add(new Tolkens("TK_sub", "Sinal de subtração", y, z));
                 }
