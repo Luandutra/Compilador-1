@@ -1,19 +1,19 @@
 package REGEX;
 
 public class Tolkens {
-    
+
     private String nome;
-    private String descricao;
+    private String lexemas;
     private int linha;
     private int coluna;
-    
-    public Tolkens(String nome, String descricao, int linha, int coluna) {
+
+    public Tolkens(String nome, String lexemas, int linha, int coluna) {
         this.nome = nome;
-        this.descricao = descricao;
+        this.lexemas = lexemas;
         this.linha = linha;
         this.coluna = coluna;
     }
-    
+
     public String getNome() {
         return nome;
     }
@@ -21,15 +21,15 @@ public class Tolkens {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    public String getDescricao() {
-        return descricao;
+
+    public String getLexemas() {
+        return lexemas;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setLexemas(String lexemas) {
+        this.lexemas = lexemas;
     }
-    
+
     public int getColuna() {
         return coluna;
     }
