@@ -1,13 +1,13 @@
 package REGEX;
 
-public class Tolkens {
+public class Tokens {
 
     private String nome;
     private String lexemas;
     private int linha;
     private int coluna;
 
-    public Tolkens(String nome, String lexemas, int linha, int coluna) {
+    public Tokens(String nome, String lexemas, int linha, int coluna) {
         this.nome = nome;
         this.lexemas = lexemas;
         this.linha = linha;
