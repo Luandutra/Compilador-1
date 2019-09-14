@@ -7,20 +7,21 @@ public class Comeco {
     public static void main(String[] args) throws IOException{
 
         ArrayList<String> arguemtos = new ArrayList<>();
-
+        
         String reservadas = "C:\\Users\\DKtga\\Desktop\\Analizador Lexico\\Config\\reservadas.txt";
-
-        String arquivo = "C:\\Users\\DKtga\\Desktop\\Analizador Lexico\\Config\\fatorial.txt";
-
+        
         boolean arg = false;
 
         if(args.length > 0){
             for(int x = 0; x < args.length; x++){
                 arguemtos.add(args[x]);
+                System.out.println(arguemtos);
             }
         }
+        
+        String arquivo = arguemtos.get(0);
 
-        if(arguemtos.contains("-tl")){
+        if(arguemtos.contains("-lt")){
             arg = true;
         }else{
             arg = false;
@@ -28,12 +29,12 @@ public class Comeco {
 
         try {
 
-            ArrayList<String> arq = IO.Leitura.lerArquivo(arquivo);
-            ArrayList<String> res = IO.Leitura.lerArquivo(reservadas);
+            ArrayList<String> arq = IO.leitura.lerArquivo(arquivo);
+            ArrayList<String> res = IO.leitura.lerArquivo(reservadas);
 
             if(!arq.isEmpty()){
                 if(!arquivo.isEmpty() && !reservadas.isEmpty()){
-                    REGEX.ExpressaoRegular.ComparadorRegex(arg, arguemtos, res, arq);
+                    REGEX.expressaoRegular.ComparadorRegex(arg, arguemtos, res, arq);
                 } else{
                     System.out.println("Erro: Arquivo esta vazio ou em branco.");
                 }
