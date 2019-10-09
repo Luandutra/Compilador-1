@@ -1,21 +1,23 @@
-package REGEX;
+package LEXICO;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-public class expressaoRegular {
+public class analiseLexica {
 
     public static void ComparadorRegex(boolean arg, ArrayList<String> argumento, ArrayList<String> palavraReservada, ArrayList<String> arq){
 
         ArrayList<String[]> listaPalavras = new ArrayList<>();
         ArrayList<tokens> token = new ArrayList<>();
         ArrayList<erro> erros = new ArrayList<>();
+        LinkedList copiaTokens = new LinkedList();
 
         boolean modoString = false;
         String texto = "";
-
-        System.out.println("Iniciando analize lexica.\n");
+        
+        System.out.println("\nIniciando analize lexica...\n");
         
         for(int x = 0; x < arq.size() - 1; x++){
             try {
@@ -153,7 +155,7 @@ public class expressaoRegular {
                         }
                     }
                 }
-
+                
                 else if (listaPalavras.get(y)[z].matches("[a-zA-Z]")){
                     token.add(new tokens("TK_variavel", listaPalavras.get(y)[z], y, z));
                 }
@@ -165,12 +167,17 @@ public class expressaoRegular {
         }
         
         if(erros.size() > 0){
-            System.out.println("ERRO LEXICO\n");
+            System.out.println("\nERRO LEXICO\n");
             for(erro e : erros){
-                System.out.println("Caractere(s): "+e.getNome()+" -> "+"Linha: "+e.getLinha()+" -> "+"Coluna: "+e.getColuna()+"\n");
+                System.out.println("Caractere(s): "+e.getNome()+" não identificado"+" -> "+"Linha: "+e.getLinha()+" -> "+"Coluna: "+e.getColuna()+"\n");
             }
             return;
         }
+        
+        for(tokens t : token){
+            copiaTokens.add(t.getNome());
+        }
+        copiaTokens.add("$");
         
         if(arg == false){
             System.out.println("Analize lexica concluida com sucesso, nenhum erro identificado, total de tokens: "+token.size()+"\n");
@@ -178,8 +185,22 @@ public class expressaoRegular {
 
         if(arg == true && argumento.contains("-lt")){
             for(tokens t : token){
-                System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna()+"\n");
+                System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
             }
+            System.out.println("\nAnalize lexica concluida com sucesso!"+"\n");
+        }
+        
+        if(arg == true && argumento.contains("-ls")){
+            SINTATICO.analiseSintatica.analisadorSintatico(copiaTokens);
+        }
+        
+        if(arg == true && argumento.contains("-tudo")){
+            for(tokens t : token){
+                System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
+            }
+            System.out.println("\nAnalize lexica concluida com sucesso!"+"\n");
+            System.out.println("\n----------------------------------------------------------------------------------------------------------------------\n");
+            SINTATICO.analiseSintatica.analisadorSintatico(copiaTokens);
         }
     }
 }

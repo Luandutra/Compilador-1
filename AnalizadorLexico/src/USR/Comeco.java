@@ -8,7 +8,7 @@ public class Comeco {
 
         ArrayList<String> arguemtos = new ArrayList<>();
         
-        String reservadas = "C:\\Users\\DKtga\\Desktop\\Analizador Lexico\\Config\\reservadas.txt";
+        String reservadas = "C:\\Users\\Dheyk\\Desktop\\Analizador Lexico\\Config\\reservadas.txt";
         
         boolean arg = false;
 
@@ -34,7 +34,7 @@ public class Comeco {
 
             if(!arq.isEmpty()){
                 if(!arquivo.isEmpty() && !reservadas.isEmpty()){
-                    REGEX.expressaoRegular.ComparadorRegex(arg, arguemtos, res, arq);
+                    LEXICO.analiseLexica.ComparadorRegex(arg, arguemtos, res, arq);
                 } else{
                     System.out.println("Erro: Arquivo esta vazio ou em branco.");
                 }
