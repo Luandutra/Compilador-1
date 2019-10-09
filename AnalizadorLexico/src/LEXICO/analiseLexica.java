@@ -1,18 +1,23 @@
 package LEXICO;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class analiseLexica {
 
-    public static void ComparadorRegex(boolean arg, ArrayList<String> argumento, ArrayList<String> palavraReservada, ArrayList<String> arq){
-
+    public static void ComparadorRegex(boolean argumento, ArrayList<String> argumentos, ArrayList<String> palavraReservada, ArrayList<String> arq){
+        
+        boolean arg = argumento;
+        ArrayList<String> listaArgumentos = argumentos;
+        
         ArrayList<String[]> listaPalavras = new ArrayList<>();
         ArrayList<tokens> token = new ArrayList<>();
         ArrayList<erro> erros = new ArrayList<>();
-        LinkedList copiaTokens = new LinkedList();
+        
+        LinkedList<String> copiaTokens = new LinkedList();
 
         boolean modoString = false;
         String texto = "";
@@ -174,33 +179,24 @@ public class analiseLexica {
             return;
         }
         
+        if(argumento == false){
+            System.out.println("Analize lexica concluida com sucesso, nenhum erro identificado, total de tokens: "+token.size()+"\n");
+        }
+
+        if(argumento == true && (argumentos.contains("-lt") | argumentos.contains("-tudo"))){
+            for(tokens t : token){
+                System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
+            }
+            System.out.println("\nAnalize lexica concluida com sucesso!"+"\n");
+        }
+        
+        Collections.reverse(token);
         for(tokens t : token){
             copiaTokens.add(t.getNome());
         }
         copiaTokens.add("$");
+        Collections.reverse(token);
         
-        if(arg == false){
-            System.out.println("Analize lexica concluida com sucesso, nenhum erro identificado, total de tokens: "+token.size()+"\n");
-        }
-
-        if(arg == true && argumento.contains("-lt")){
-            for(tokens t : token){
-                System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
-            }
-            System.out.println("\nAnalize lexica concluida com sucesso!"+"\n");
-        }
-        
-        if(arg == true && argumento.contains("-ls")){
-            SINTATICO.analiseSintatica.analisadorSintatico(copiaTokens);
-        }
-        
-        if(arg == true && argumento.contains("-tudo")){
-            for(tokens t : token){
-                System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
-            }
-            System.out.println("\nAnalize lexica concluida com sucesso!"+"\n");
-            System.out.println("\n----------------------------------------------------------------------------------------------------------------------\n");
-            SINTATICO.analiseSintatica.analisadorSintatico(copiaTokens);
-        }
+        SINTATICO.analiseSintatica.analisadorSintatico(arg, listaArgumentos, copiaTokens);
     }
 }

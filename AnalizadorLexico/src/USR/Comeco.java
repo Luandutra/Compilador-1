@@ -8,7 +8,7 @@ public class Comeco {
 
         ArrayList<String> arguemtos = new ArrayList<>();
         
-        String reservadas = "C:\\Users\\Dheyk\\Desktop\\Analizador Lexico\\Config\\reservadas.txt";
+        String reservadas = "C:\\Users\\DKtga\\Documents\\NetBeansProjects\\Compilador\\AnalizadorLexico\\dist\\reservadas.txt";
         
         boolean arg = false;
 
