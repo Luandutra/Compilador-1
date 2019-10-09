@@ -6,5 +6,6 @@ public class analiseSintatica {
     
     public static void analisadorSintatico(LinkedList tokens) {
         
+        
     }
 }
