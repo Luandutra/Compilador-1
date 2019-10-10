@@ -1,8 +1,8 @@
 package SINTATICO;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
+import java.util.LinkedList;
 
 public class analiseSintatica{
     
@@ -35,7 +35,6 @@ public class analiseSintatica{
         System.out.println("\nInicio da Análise Sintática\n");
         
         while (!fim){
-            
             if(listaTokens.isEmpty() && listaCodigo.isEmpty()){
                 System.out.println("\n"+msg+"\n");
                 System.out.println("\nAnálise sintática concluida, nehum erro encontrado.");
@@ -44,7 +43,6 @@ public class analiseSintatica{
                 msg += "==============================================";
                 msg += "Topo da lista de tokens: " + listaTokens.peek();
                 msg += "Topo da lista de codigo: " + listaCodigo.peek();
-                
                 if(fim){
                     
                 }
