@@ -192,16 +192,12 @@ public class analiseLexica {
             for(tokens t : token){
                 System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
             }
-            
             SINTATICO.analiseSintatica.analisadorSintatico(arg, listaArgumentos, copiaTokens);
-            
             System.out.println("\nAnalize lexica concluida com sucesso!"+"\n");
         }
         
         if(argumento == true && (argumentos.contains("-ls") | argumentos.contains("-tudo"))){
-
             SINTATICO.analiseSintatica.analisadorSintatico(arg, listaArgumentos, copiaTokens);
-            
         }        
     }
 }
