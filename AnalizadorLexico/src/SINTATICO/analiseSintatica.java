@@ -7,9 +7,17 @@ public class analiseSintatica{
     
     LinkedList<String> listaCodigo;
     
-    public static void analisadorSintatico(boolean argumento, ArrayList<String> argumentos, LinkedList<String> listaTokens) {
+    public static void analisadorSintatico(LinkedList<String> listaTokens){
         
         listaTokens.add("$");
         listaTokens.add("PROGRAMA");
+        
+        boolean fim = false;
+        
+        System.out.println("\nInicio da Análise Sintática\n");
+        
+        while (!fim){            
+            
+        }
     }
 }
