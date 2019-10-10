@@ -6,26 +6,24 @@ import java.util.Map;
 
 public class analiseSintatica{
     
-    private Map<String, Map<String, Integer>> tabelaSintatica;
+    private static Map<String, Map<String, Integer>> tabelaSintatica;
     
     public Map<String, Map<String, Integer>> getTabelaSintatica() {
         return tabelaSintatica;
     }
 
-    public void setTabelaSintatica(Map<String, Map<String, Integer>> tabelaSintatica) {
-        this.tabelaSintatica = tabelaSintatica;
+    public static void setTabelaSintatica(Map<String, Map<String, Integer>> aTabelaSintatica) {
+        tabelaSintatica = aTabelaSintatica;
     }
     
     public analiseSintatica(){
         this.tabelaSintatica = new HashMap<>();
     }
     
-    public void geraTabela(){
-        mapaTabela m = new mapaTabela();
-        setTabelaSintatica(m.tabelaSintatica());
-    }
-    
     public static void analisadorSintatico(LinkedList<String> listaTokens){
+        
+        mapaTabela mt = new mapaTabela();
+        setTabelaSintatica(mt.tabelaSintatica());
         
         LinkedList<String> listaCodigo = null;
         String msg = null;
