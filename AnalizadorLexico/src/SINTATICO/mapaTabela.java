@@ -3,9 +3,9 @@ package SINTATICO;
 import java.util.HashMap;
 import java.util.Map;
 
-public class tabela { 
+public class mapaTabela { 
     
-    public Map<String, Map<String, Integer>> mapaTabela(){
+    public Map<String, Map<String, Integer>> tabelaSintatica(){
         
         Map<String, Map<String, Integer>> mapaTabela_Sintatica = new HashMap<>();
         
