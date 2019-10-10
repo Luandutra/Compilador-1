@@ -179,6 +179,11 @@ public class analiseLexica {
             return;
         }
         
+        for(tokens t : token){
+            copiaTokens.add(t.getNome());
+        }
+        copiaTokens.add("$");
+        
         if(argumento == false){
             System.out.println("Analize lexica concluida com sucesso, nenhum erro identificado, total de tokens: "+token.size()+"\n");
         }
@@ -187,16 +192,16 @@ public class analiseLexica {
             for(tokens t : token){
                 System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
             }
+            
+            SINTATICO.analiseSintatica.analisadorSintatico(arg, listaArgumentos, copiaTokens);
+            
             System.out.println("\nAnalize lexica concluida com sucesso!"+"\n");
         }
         
-        Collections.reverse(token);
-        for(tokens t : token){
-            copiaTokens.add(t.getNome());
-        }
-        copiaTokens.add("$");
-        Collections.reverse(token);
-        
-        SINTATICO.analiseSintatica.analisadorSintatico(arg, listaArgumentos, copiaTokens);
+        if(argumento == true && (argumentos.contains("-ls") | argumentos.contains("-tudo"))){
+
+            SINTATICO.analiseSintatica.analisadorSintatico(arg, listaArgumentos, copiaTokens);
+            
+        }        
     }
 }
