@@ -6,7 +6,7 @@ public class producaoTabela {
     
     public static LinkedList<String> producoes(int numeroProducao){
         
-        LinkedList<String> listaProducao = null;
+        LinkedList<String> listaProducao = new LinkedList<>();
         
         switch(numeroProducao){
             

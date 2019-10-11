@@ -12,8 +12,10 @@ public class analiseLexica {
         ArrayList<String[]> listaPalavras = new ArrayList<>();
         ArrayList<tokens> token = new ArrayList<>();
         ArrayList<erro> erros = new ArrayList<>();
+        ArrayList<String> arg = new ArrayList<>();
         LinkedList<String> copiaTokens = new LinkedList();
-
+        
+        arg = argumentos;
         boolean modoString = false;
         String texto = "";
         
@@ -186,7 +188,7 @@ public class analiseLexica {
             }
             System.out.println("\nAnalize lexica concluida com sucesso!"+"\n");
             System.out.println("\n====================================================================================================================\n");
-            SINTATICO.analiseSintatica.analisadorSintatico(copiaTokens);
+            SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
         }
 
         if(argumento == true && argumentos.contains("-lt") ){
@@ -197,7 +199,7 @@ public class analiseLexica {
         }       
         
         if(argumento == true && argumentos.contains("-ls")){
-            SINTATICO.analiseSintatica.analisadorSintatico(copiaTokens);
+            SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
         }        
     }
 }

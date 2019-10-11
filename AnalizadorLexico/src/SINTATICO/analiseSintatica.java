@@ -1,5 +1,6 @@
 package SINTATICO;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.LinkedList;
@@ -30,7 +31,7 @@ public class analiseSintatica{
         listaProducao = aListaProducao;
     }
     
-    public static void analisadorSintatico(LinkedList<String> listaTokens){
+    public static void analisadorSintatico(ArrayList<String> argumentos, LinkedList<String> listaTokens){
         
         mapaTabela mt = new mapaTabela();
         setTabelaSintatica(mt.tabelaSintatica());
@@ -48,9 +49,9 @@ public class analiseSintatica{
                 System.out.println("\nAnálise sintática concluida, nehum erro encontrado.");
                 conclusao = true;
             } else{
-                log += "==============================================";
-                log += "Topo da lista de tokens: " + listaTokens.peek();
-                log += "Topo da lista de codigo: " + listaCodigo.peek();               
+                log += "==============================================\n";
+                log += "Topo da lista de tokens: " + listaTokens.peek()+"\n";
+                log += "Topo da lista de codigo: " + listaCodigo.peek()+"\n";               
                 if(listaTokens.peek().equals(listaCodigo.peek())){
                     listaTokens.pop();
                     listaCodigo.pop();
@@ -58,29 +59,29 @@ public class analiseSintatica{
                 else if(getTabelaSintatica().containsKey(listaTokens.peek())){
                     Map<String, Integer> mapaInterno = (getTabelaSintatica().get(listaTokens.peek()));
                     if(mapaInterno.containsKey(listaCodigo.peek())){
-                        System.out.println("ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
                         setListaProducao(SINTATICO.producaoTabela.producoes(mapaInterno.get(listaCodigo.peek())));
-                        System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
                         listaCodigo.pop();
                         if(!listaProducao.isEmpty()){
-                            System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
                             for(int x = 0; x < getListaProducao().size(); x++){
-                                System.out.println("fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
                                 listaCodigo.add(getListaProducao().get(x));
                             }
                         }
                     } else{
                         System.out.println("\nERRO\n");
-                        System.out.println("Token: "+listaTokens.peek()+" em posição irregular");
+                        System.out.println("Token: "+listaTokens.peek()+" em posição irregular\n");
                         conclusao = true;
+                        return;
                     }
                 } else {
                     System.out.println("\nERRO\n");
-                    System.out.println("Token: "+listaTokens.peek()+" em posição irregular");
+                    System.out.println("Token: "+listaTokens.peek()+" em posição irregular\n");
                     conclusao = true;
+                    return;
                 }
             }
         }
-        System.out.println(log);
+        if(argumentos.contains("-ls") | argumentos.contains("-tudo")){
+            System.out.println(log);
+        }
     }
 }
