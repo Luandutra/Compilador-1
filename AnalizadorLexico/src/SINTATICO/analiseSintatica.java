@@ -35,7 +35,7 @@ public class analiseSintatica{
         
         mapaTabela mt = new mapaTabela();
         setTabelaSintatica(mt.tabelaSintatica());
-        String log = null;
+        String log = "";
         boolean conclusao = false;
         
         LinkedList<String> listaCodigo = new LinkedList<>();
@@ -70,12 +70,14 @@ public class analiseSintatica{
                         System.out.println("\nERRO\n");
                         System.out.println("Token: "+listaTokens.peek()+" em posição irregular\n");
                         conclusao = true;
+                        //System.out.println(log);
                         return;
                     }
                 } else {
                     System.out.println("\nERRO\n");
                     System.out.println("Token: "+listaTokens.peek()+" em posição irregular\n");
                     conclusao = true;
+                    //System.out.println(log);
                     return;
                 }
             }

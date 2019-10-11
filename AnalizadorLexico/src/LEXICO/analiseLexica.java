@@ -131,7 +131,7 @@ public class analiseLexica {
                         }
 
                         if(listaPalavras.get(y)[z].matches("inteiro")){
-                            token.add(new tokens("TK_inteiro", listaPalavras.get(y)[z], y, z));
+                            token.add(new tokens("TK_int", listaPalavras.get(y)[z], y, z));
                         }
 
                         if(listaPalavras.get(y)[z].matches("leia")){
