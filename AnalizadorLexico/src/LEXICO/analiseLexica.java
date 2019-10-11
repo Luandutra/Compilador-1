@@ -186,7 +186,7 @@ public class analiseLexica {
                 System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
             }
             System.out.println("\nAnalize lexica concluida com sucesso!"+"\n");
-            System.out.println("\n====================================================================================================================");
+            System.out.println("\n====================================================================================================================\n");
             SINTATICO.analiseSintatica.analisadorSintatico(copiaTokens);
         }
 
@@ -198,7 +198,6 @@ public class analiseLexica {
         }       
         
         if(argumento == true && argumentos.contains("-ls")){
-            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             SINTATICO.analiseSintatica.analisadorSintatico(copiaTokens);
         }        
     }

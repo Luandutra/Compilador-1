@@ -21,9 +21,15 @@ public class Comeco {
         
         String arquivo = arguemtos.get(0);
 
-        if(arguemtos.contains("-lt")){
+        if(arguemtos.contains("-tudo")){
             arg = true;
-        }else{
+        }
+        else if(arguemtos.contains("-lt")){
+            arg = true;
+        }
+        else if(arguemtos.contains("-ls")){
+            arg = true;
+        } else{
             arg = false;
         }
 

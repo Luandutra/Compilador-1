@@ -30,7 +30,7 @@ public class analiseSintatica{
         LinkedList<String> listaProducao = null;
         Map<String, Integer> segundoMapa;
         String msg = null;
-        boolean fim = false;
+        boolean conclusao = false;
         
         //Collections.reverse(listaTokens);
         
@@ -39,15 +39,15 @@ public class analiseSintatica{
         
         System.out.println("\nInicio da Análise Sintática\n");
         
-        while (!fim){
+        while (!conclusao){
             if(listaTokens.isEmpty() && listaCodigo.isEmpty()){
                 System.out.println("\n"+msg+"\n");
                 System.out.println("\nAnálise sintática concluida, nehum erro encontrado.");
-                fim = true;
+                conclusao = true;
             } else{
                 msg += "==============================================";
                 msg += "Topo da lista de tokens: " + listaTokens.peek();
-                msg += "Topo da lista de codigo: " + listaCodigo.peek();
+                msg += "Topo da lista de codigo: " + listaCodigo.peek();               
                 if(listaTokens.peek().equals(listaCodigo.peek())){
                     listaTokens.pop();
                     listaCodigo.pop();
@@ -65,12 +65,12 @@ public class analiseSintatica{
                     } else{
                         System.out.println("\nERRO\n");
                         System.out.println("Token: "+listaTokens.peek());
-                        fim = true;
+                        conclusao = true;
                     }
                 } else {
                     System.out.println("\nERRO\n");
                     System.out.println("Token: "+listaTokens.peek());
-                    fim = true;
+                    conclusao = true;
                 }
             }
         }
