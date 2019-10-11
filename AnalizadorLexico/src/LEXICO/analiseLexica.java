@@ -175,7 +175,6 @@ public class analiseLexica {
         for(tokens t : token){
             copiaTokens.add(t.getNome());
         }
-        copiaTokens.add("$");
         
         if(argumento == false){
             System.out.println("Analize lexica concluida com sucesso, nenhum erro identificado, total de tokens: "+token.size()+"\n");
