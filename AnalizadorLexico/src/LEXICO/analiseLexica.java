@@ -9,19 +9,13 @@ public class analiseLexica {
 
     public static void ComparadorRegex(boolean argumento, ArrayList<String> argumentos, ArrayList<String> palavraReservada, ArrayList<String> arq){
         
-        boolean arg = argumento;
-        ArrayList<String> listaArgumentos = argumentos;
-        
         ArrayList<String[]> listaPalavras = new ArrayList<>();
         ArrayList<tokens> token = new ArrayList<>();
         ArrayList<erro> erros = new ArrayList<>();
-        
         LinkedList<String> copiaTokens = new LinkedList();
 
         boolean modoString = false;
         String texto = "";
-        
-        System.out.println("\nIniciando analize lexica...\n");
         
         for(int x = 0; x < arq.size() - 1; x++){
             try {
@@ -201,9 +195,10 @@ public class analiseLexica {
                 System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
             }
             System.out.println("\nAnalize lexica concluida com sucesso!"+"\n");
-        }
+        }       
         
         if(argumento == true && argumentos.contains("-ls")){
+            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             SINTATICO.analiseSintatica.analisadorSintatico(copiaTokens);
         }        
     }

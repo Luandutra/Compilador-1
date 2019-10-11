@@ -1,5 +1,6 @@
 package SINTATICO;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.LinkedList;
@@ -8,7 +9,7 @@ public class analiseSintatica{
     
     private static Map<String, Map<String, Integer>> tabelaSintatica;
     
-    public Map<String, Map<String, Integer>> getTabelaSintatica() {
+    public static Map<String, Map<String, Integer>> getTabelaSintatica() {
         return tabelaSintatica;
     }
 
@@ -26,11 +27,15 @@ public class analiseSintatica{
         setTabelaSintatica(mt.tabelaSintatica());
         
         LinkedList<String> listaCodigo = null;
+        LinkedList<String> listaProducao = null;
+        Map<String, Integer> segundoMapa;
         String msg = null;
         boolean fim = false;
         
-        listaTokens.add("$");
-        listaTokens.add("PROGRAMA");
+        //Collections.reverse(listaTokens);
+        
+        listaCodigo.add("$");
+        listaCodigo.add("PROGRAMA");
         
         System.out.println("\nInicio da Análise Sintática\n");
         
@@ -43,10 +48,32 @@ public class analiseSintatica{
                 msg += "==============================================";
                 msg += "Topo da lista de tokens: " + listaTokens.peek();
                 msg += "Topo da lista de codigo: " + listaCodigo.peek();
-                if(fim){
-                    
+                if(listaTokens.peek().equals(listaCodigo.peek())){
+                    listaTokens.pop();
+                    listaCodigo.pop();
+                }
+                else if(getTabelaSintatica().containsKey(listaTokens.peek())){
+                    segundoMapa = getTabelaSintatica().get(listaTokens.peek());
+                    if(segundoMapa.containsKey(listaCodigo.peek())){
+                        listaProducao = SINTATICO.producaoTabela.producoes(segundoMapa.get(listaCodigo.peek()));
+                        listaCodigo.pop();
+                        if(!listaProducao.isEmpty()){
+                            for(int x = 0; x < listaProducao.size(); x++){
+                                listaCodigo.add(listaProducao.get(x));
+                            }
+                        }
+                    } else{
+                        System.out.println("\nERRO\n");
+                        System.out.println("Token: "+listaTokens.peek());
+                        fim = true;
+                    }
+                } else {
+                    System.out.println("\nERRO\n");
+                    System.out.println("Token: "+listaTokens.peek());
+                    fim = true;
                 }
             }
         }
+        System.out.println(msg);
     }
 }

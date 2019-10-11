@@ -14,16 +14,16 @@ public class producaoTabela {
                 listaProducao.add("TK_inicio");
                 listaProducao.add("LISTA_COMANDOS");
                 listaProducao.add("TK_fim");
-                break;
+                return listaProducao;
                 
             case 1:
                 listaProducao.add("COMANDOS");
                 listaProducao.add("LISTA_COMANDOS");
-                break;
+                return listaProducao;
                 
             case 2:
                 listaProducao = null;
-                break;
+                return listaProducao;
                 
             case 3:
                 listaProducao.add("LEIA");
@@ -31,7 +31,7 @@ public class producaoTabela {
                 listaProducao.add("ATRIBUTO");
                 listaProducao.add("TK_fechaparent");
                 listaProducao.add("FINALLINHA");
-                break;
+                return listaProducao;
                 
             case 4:
                 listaProducao.add("ESCREVA");
@@ -39,7 +39,7 @@ public class producaoTabela {
                 listaProducao.add("ATRIBUTO");
                 listaProducao.add("TK_fechaparent");
                 listaProducao.add("FINALLINHA");
-                break;
+                return listaProducao;
                 
             case 5:
                 listaProducao.add("ENQUANTO");
@@ -49,7 +49,7 @@ public class producaoTabela {
                 listaProducao.add("INICIOBLOCO");
                 listaProducao.add("LISTA_COMANDOS");
                 listaProducao.add("FINALBLOCO");
-                break;
+                return listaProducao;
                 
             case 6:
                 listaProducao.add("SE");
@@ -60,196 +60,196 @@ public class producaoTabela {
                 listaProducao.add("LISTA_COMANDOS");
                 listaProducao.add("SENAO");
                 listaProducao.add("FINALBLOCO");
-                break;
+                return listaProducao;
                 
             case 7:
                 listaProducao.add("TK_senao");
                 listaProducao.add("INICIOBLOCO");
                 listaProducao.add("LISTA_COMANDOS");
                 listaProducao.add("FINALBLOCO");
-                break;
+                return listaProducao;
                 
             case 8:
                 listaProducao = null;
-                break;
+                return listaProducao;
                 
             case 9:
                 listaProducao.add("VARIAVEL");
                 listaProducao.add("ARGUMENTOEXP");
-                break;
+                return listaProducao;
                 
             case 10:
                 listaProducao.add("SIMBOLO");
                 listaProducao.add("VARNUMERO");
-                break;
+                return listaProducao;
                 
             case 11:
                 listaProducao = null;
-                break;
+                return listaProducao;
                 
             case 12:
                 listaProducao.add("TK_variavel");
                 listaProducao.add("ARGUMENTO");
                 listaProducao.add("FINALLINHA");
-                break;
+                return listaProducao;
                 
             case 13:
                 listaProducao.add("TK_igual");
                 listaProducao.add("ARGUMENTOAUX");
-                break;
+                return listaProducao;
                 
             case 14:
                 listaProducao.add("ITERACAO");
-                break;
+                return listaProducao;
                 
             case 15:
                 listaProducao.add("TIPOVARIAVEL");
                 listaProducao.add("VARIAVEL");
                 listaProducao.add("ATRIBUICAO");
                 listaProducao.add("FINALLINHA");
-                break;
+                return listaProducao;
                 
             case 16:
                 listaProducao.add("TK_igual");
                 listaProducao.add("ARGUMENTOAUX");
-                break;
+                return listaProducao;
                 
             case 17:
                 listaProducao = null;
-                break;
+                return listaProducao;
                 
             case 18:
                 listaProducao.add("EXPMATVARNUM");
-                break;
+                return listaProducao;
                 
             case 19:
                 listaProducao.add("TK_abreparent");
                 listaProducao.add("STRING");
                 listaProducao.add("TK_fechaparent");
-                break;
+                return listaProducao;
                 
             case 20:
                 listaProducao.add("VARNUMERO");
                 listaProducao.add("EXPRESSAOMAT");
-                break;
+                return listaProducao;
                 
             case 21:
                 listaProducao.add("SIMBOLORMAT");
                 listaProducao.add("EXPMATVARNUM");
-                break;
+                return listaProducao;
                 
             case 22:
                 listaProducao = null;
-                break;
+                return listaProducao;
                 
             case 23:
                 listaProducao.add("STRING");
-                break;
+                return listaProducao;
                 
             case 24:
                 listaProducao.add("NUMERO");
-                break;
+                return listaProducao;
                 
             case 25:
                 listaProducao.add("VARIAVEL");
-                break;
+                return listaProducao;
                 
             case 26:
                 listaProducao.add("NUMERO");
-                break;
+                return listaProducao;
                 
             case 27:
                 listaProducao.add("VARIAVEL");
-                break;
+                return listaProducao;
                 
             case 28:
                 listaProducao.add("TK_numpos");
-                break;
+                return listaProducao;
                 
             case 29:
                 listaProducao.add("TK_numneg");
-                break;
+                return listaProducao;
                 
             case 30:
                 listaProducao.add("TK_maior");
-                break;
+                return listaProducao;
                 
             case 31:
                 listaProducao.add("TK_menor");
-                break;
+                return listaProducao;
                 
             case 32:
                 listaProducao.add("TK_diferente");
-                break;
+                return listaProducao;
                 
             case 33:
                 listaProducao.add("TK_igualigual");
-                break;
+                return listaProducao;
                 
             case 34:
                 listaProducao.add("TK_soma");
-                break;
+                return listaProducao;
                 
             case 35:
                 listaProducao.add("TK_sub");
-                break;
+                return listaProducao;
                 
             case 36:
                 listaProducao.add("TK_mult");
-                break;
+                return listaProducao;
                 
             case 37:
                 listaProducao.add("TK_div");
-                break;
+                return listaProducao;
                 
             case 38:
                 listaProducao.add("TK_incremento");
-                break;
+                return listaProducao;
                 
             case 39:
                 listaProducao.add("TK_decremento");
-                break;
+                return listaProducao;
                 
             case 40:
                 listaProducao.add("TK_leia");
-                break;
+                return listaProducao;
                 
             case 41:
                 listaProducao.add("TK_escreva");
-                break;
+                return listaProducao;
                 
             case 42:
                 listaProducao.add("TK_string");
-                break;
+                return listaProducao;
                 
             case 43:
                 listaProducao.add("TK_int");
-                break;
+                return listaProducao;
                 
             case 44:
                 listaProducao.add("TK_variavel");
-                break;
+                return listaProducao;
                 
             case 45:
                 listaProducao.add("TK_se");
-                break;
+                return listaProducao;
                 
             case 46:
                 listaProducao.add("TK_enquanto");
-                break;
+                return listaProducao;
                 
             case 47:
                 listaProducao.add("TK_iniciobloco");
-                break;
+                return listaProducao;
                 
             case 48:
                 listaProducao.add("TK_fimbloco");
-                break;
+                return listaProducao;
                 
             case 49:
                 listaProducao.add("TK_finallinha");
-                break;
+                return listaProducao;
         }  
-        return listaProducao;
+        return listaProducao = null;
     }
 }
