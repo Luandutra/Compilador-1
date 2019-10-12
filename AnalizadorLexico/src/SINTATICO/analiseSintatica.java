@@ -65,19 +65,11 @@ public class analiseSintatica{
                     } else{
                         System.out.println("Erro sintática, token: "+listaTokens.peek()+" em posição irregular\n");
                         conclusao = true;
-                        for(log l : lg){
-                            System.out.println("===========================================================================================\n");
-                            System.out.println("Token no começo da fila: "+l.getToken()+"\n" + "Codigo no começo da fila: "+l.getCodigo()+"\n");
-                        }
                         return;
                     }
                 } else {
                     System.out.println("Erro sintática, token: "+listaTokens.peek()+" em posição irregular\n");
                     conclusao = true;
-                    for(log l : lg){
-                        System.out.println("===========================================================================================\n");
-                        System.out.println("Token no começo da fila: "+l.getToken()+"\n" + "Codigo no começo da fila: "+l.getCodigo()+"\n");
-                    }
                     return;
                 }
             }
