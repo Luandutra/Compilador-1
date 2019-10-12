@@ -35,23 +35,21 @@ public class analiseSintatica{
         
         mapaTabela mt = new mapaTabela();
         setTabelaSintatica(mt.tabelaSintatica());
-        String log = "";
         boolean conclusao = false;
-        
+        ArrayList<log> lg = new ArrayList<>();
         LinkedList<String> listaCodigo = new LinkedList<>();
         listaCodigo.add("PROGRAMA");
-        
-        //Collections.reverse(listaTokens);
 
         while (!conclusao){
             if(listaTokens.isEmpty() && listaCodigo.isEmpty()){
-                System.out.println("\n"+log+"\n");
+                for(log l : lg){
+                    System.out.println("===========================================================================================\n");
+                    System.out.println("Token no começo da fila: "+l.getToken()+"\n" + "Codigo no começo da fila: "+l.getCodigo()+"\n");
+                }
                 System.out.println("\nAnálise sintática concluida, nehum erro encontrado.");
                 conclusao = true;
             } else{
-                log += "==============================================\n";
-                log += "Topo da lista de tokens: " + listaTokens.peek()+"\n";
-                log += "Topo da lista de codigo: " + listaCodigo.peek()+"\n";               
+                lg.add(new log(listaTokens.peek(), listaCodigo.peek()));             
                 if(listaTokens.peek().equals(listaCodigo.peek())){
                     listaTokens.pop();
                     listaCodigo.pop();
@@ -67,23 +65,24 @@ public class analiseSintatica{
                             }
                         }
                     } else{
-                        System.out.println("\nERRO\n");
-                        System.out.println("Token: "+listaTokens.peek()+" em posição irregular\n");
+                        System.out.println("Erro sintática, token: "+listaTokens.peek()+" em posição irregular\n");
                         conclusao = true;
-                        //System.out.println(log);
                         return;
                     }
                 } else {
-                    System.out.println("\nERRO\n");
-                    System.out.println("Token: "+listaTokens.peek()+" em posição irregular\n");
+                    System.out.println("Erro sintática, token: "+listaTokens.peek()+" em posição irregular\n");
                     conclusao = true;
-                    //System.out.println(log);
                     return;
                 }
             }
         }
         if(argumentos.contains("-ls") | argumentos.contains("-tudo")){
-            System.out.println(log);
+            for(log l : lg){
+                System.out.println("===========================================================================================\n");
+                System.out.println("Token no começo da fila: "+l.getToken()+"\n" + "Codigo no começo da fila: "+l.getCodigo()+"\n");
+            }
+        } else{
+            System.out.println("\nAnálise sintática concluida, nehum erro encontrado.");
         }
     }
 }

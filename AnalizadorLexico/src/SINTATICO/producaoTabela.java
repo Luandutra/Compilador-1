@@ -9,7 +9,6 @@ public class producaoTabela {
         LinkedList<String> listaProducao = new LinkedList<>();
         
         switch(numeroProducao){
-            
             case 0:
                 listaProducao.clear();
                 listaProducao.add("TK_inicio");

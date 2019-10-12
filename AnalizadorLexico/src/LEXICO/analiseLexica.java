@@ -12,10 +12,7 @@ public class analiseLexica {
         ArrayList<String[]> listaPalavras = new ArrayList<>();
         ArrayList<tokens> token = new ArrayList<>();
         ArrayList<erro> erros = new ArrayList<>();
-        ArrayList<String> arg = new ArrayList<>();
         LinkedList<String> copiaTokens = new LinkedList();
-        
-        arg = argumentos;
         boolean modoString = false;
         String texto = "";
         
@@ -186,7 +183,7 @@ public class analiseLexica {
             for(tokens t : token){
                 System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
             }
-            System.out.println("\nAnalize lexica concluida com sucesso!"+"\n");
+            System.out.println("\nAnalize lexica concluida com sucesso!\n");
             System.out.println("\n====================================================================================================================\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
         }
