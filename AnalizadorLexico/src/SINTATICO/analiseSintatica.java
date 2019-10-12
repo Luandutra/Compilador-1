@@ -43,7 +43,7 @@ public class analiseSintatica{
 
         while (!conclusao){
             if(listaTokens.isEmpty() && listaCodigo.isEmpty()){
-                System.out.println("\nAnálise sintática concluida, nehum erro encontrado.");
+                System.out.println("\nAnálise sintática concluida, nenhum erro encontrado.");
                 conclusao = true;
             } else{
                 lg.add(new log(listaTokens.peek(), listaCodigo.peek()));             
@@ -77,7 +77,7 @@ public class analiseSintatica{
         if(argumentos.contains("-ls") | argumentos.contains("-tudo")){
             for(log l : lg){
                 System.out.println("===========================================================================================\n");
-                System.out.println("Token no começo da fila: "+l.getToken()+"\n" + "Codigo no começo da fila: "+l.getCodigo()+"\n");
+                System.out.println("Token no começo da fila: "+l.getToken()+ "\n" + "Codigo no começo da fila: "+l.getCodigo()+"\n");
             }
         }
     }
