@@ -1,6 +1,7 @@
 package SINTATICO;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.LinkedList;
@@ -42,10 +43,6 @@ public class analiseSintatica{
 
         while (!conclusao){
             if(listaTokens.isEmpty() && listaCodigo.isEmpty()){
-                for(log l : lg){
-                    System.out.println("===========================================================================================\n");
-                    System.out.println("Token no começo da fila: "+l.getToken()+"\n" + "Codigo no começo da fila: "+l.getCodigo()+"\n");
-                }
                 System.out.println("\nAnálise sintática concluida, nehum erro encontrado.");
                 conclusao = true;
             } else{
@@ -59,19 +56,28 @@ public class analiseSintatica{
                     if(mapaInterno.containsKey(listaCodigo.peek())){
                         setListaProducao(SINTATICO.producaoTabela.producoes(mapaInterno.get(listaCodigo.peek())));
                         listaCodigo.pop();
-                        if(!listaProducao.isEmpty()){
+                        if(!getListaProducao().isEmpty()){
+                            Collections.reverse(getListaProducao());
                             for(int x = 0; x < getListaProducao().size(); x++){
-                                listaCodigo.add(getListaProducao().get(x));
+                                listaCodigo.addFirst(getListaProducao().get(x));
                             }
                         }
                     } else{
                         System.out.println("Erro sintática, token: "+listaTokens.peek()+" em posição irregular\n");
                         conclusao = true;
+                        for(log l : lg){
+                            System.out.println("===========================================================================================\n");
+                            System.out.println("Token no começo da fila: "+l.getToken()+"\n" + "Codigo no começo da fila: "+l.getCodigo()+"\n");
+                        }
                         return;
                     }
                 } else {
                     System.out.println("Erro sintática, token: "+listaTokens.peek()+" em posição irregular\n");
                     conclusao = true;
+                    for(log l : lg){
+                        System.out.println("===========================================================================================\n");
+                        System.out.println("Token no começo da fila: "+l.getToken()+"\n" + "Codigo no começo da fila: "+l.getCodigo()+"\n");
+                    }
                     return;
                 }
             }
@@ -81,8 +87,6 @@ public class analiseSintatica{
                 System.out.println("===========================================================================================\n");
                 System.out.println("Token no começo da fila: "+l.getToken()+"\n" + "Codigo no começo da fila: "+l.getCodigo()+"\n");
             }
-        } else{
-            System.out.println("\nAnálise sintática concluida, nehum erro encontrado.");
         }
     }
 }
