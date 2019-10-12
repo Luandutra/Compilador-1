@@ -176,7 +176,8 @@ public class analiseLexica {
         }
         
         if(argumento == false){
-            System.out.println("Analize lexica concluida com sucesso, nenhum erro identificado, total de tokens: "+token.size()+"\n");
+            System.out.println("\nAnalize lexica concluida com sucesso, nenhum erro identificado!"+"\n");
+            SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
         }
         
         if(argumento == true && argumentos.contains("-tudo")){

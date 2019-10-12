@@ -1,5 +1,7 @@
 package SINTATICO;
 
+import java.util.LinkedList;
+
 public class log {
     
     private String token;
@@ -24,5 +26,5 @@ public class log {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
-    }   
+    }
 }
