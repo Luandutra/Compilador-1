@@ -7,9 +7,6 @@ public class Comeco {
     public static void main(String[] args) throws IOException{
 
         ArrayList<String> arguemtos = new ArrayList<>();
-        
-        String reservadas = "C:\\Users\\DKtga\\Documents\\NetBeansProjects\\Compilador\\AnalizadorLexico\\dist\\reservadas.txt";
-        
         boolean arg = false;
 
         if(args.length > 0){
@@ -21,26 +18,17 @@ public class Comeco {
         
         String arquivo = arguemtos.get(0);
 
-        if(arguemtos.contains("-tudo")){
-            arg = true;
-        }
-        else if(arguemtos.contains("-lt")){
-            arg = true;
-        }
-        else if(arguemtos.contains("-ls")){
+        if(arguemtos.contains("-tudo") | arguemtos.contains("-lt") | arguemtos.contains("-ls")){
             arg = true;
         } else{
             arg = false;
         }
 
         try {
-
             ArrayList<String> arq = IO.leitura.lerArquivo(arquivo);
-            ArrayList<String> res = IO.leitura.lerArquivo(reservadas);
-
             if(!arq.isEmpty()){
-                if(!arquivo.isEmpty() && !reservadas.isEmpty()){
-                    LEXICO.analiseLexica.ComparadorRegex(arg, arguemtos, res, arq);
+                if(!arquivo.isEmpty()){
+                    LEXICO.analiseLexica.ComparadorRegex(arg, arguemtos, arq);
                 } else{
                     System.out.println("Erro: Arquivo esta vazio ou em branco.");
                 }

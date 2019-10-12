@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 
 public class analiseLexica {
 
-    public static void ComparadorRegex(boolean argumento, ArrayList<String> argumentos, ArrayList<String> palavraReservada, ArrayList<String> arq){
+    public static void ComparadorRegex(boolean argumento, ArrayList<String> argumentos, ArrayList<String> arq){
         
         ArrayList<String[]> listaPalavras = new ArrayList<>();
         ArrayList<tokens> token = new ArrayList<>();
@@ -115,42 +115,36 @@ public class analiseLexica {
                     token.add(new tokens("TK_sub", listaPalavras.get(y)[z], y, z));
                 }
 
-                else if (palavraReservada.contains(listaPalavras.get(y)[z])){
-                    Pattern pattern = Pattern.compile("[a-z]");
-                    Matcher matcher = pattern.matcher(listaPalavras.get(y)[z]);
-                    if(matcher.find()){
-                        if(listaPalavras.get(y)[z].matches("inicio")){
-                            token.add(new tokens("TK_inicio", listaPalavras.get(y)[z], y, z));
-                        }
+                else if(listaPalavras.get(y)[z].matches("inicio")){
+                    token.add(new tokens("TK_inicio", listaPalavras.get(y)[z], y, z));
+                }
 
-                        if(listaPalavras.get(y)[z].matches("fim")){
-                            token.add(new tokens("TK_fim", listaPalavras.get(y)[z], y, z));
-                        }
+                else if(listaPalavras.get(y)[z].matches("fim")){
+                    token.add(new tokens("TK_fim", listaPalavras.get(y)[z], y, z));
+                }
 
-                        if(listaPalavras.get(y)[z].matches("inteiro")){
-                            token.add(new tokens("TK_int", listaPalavras.get(y)[z], y, z));
-                        }
+                else if(listaPalavras.get(y)[z].matches("inteiro")){
+                    token.add(new tokens("TK_int", listaPalavras.get(y)[z], y, z));
+                }
 
-                        if(listaPalavras.get(y)[z].matches("leia")){
-                            token.add(new tokens("TK_leia", listaPalavras.get(y)[z], y, z));
-                        }
+                else if(listaPalavras.get(y)[z].matches("leia")){
+                    token.add(new tokens("TK_leia", listaPalavras.get(y)[z], y, z));
+                }
 
-                        if(listaPalavras.get(y)[z].matches("escreva")){
-                            token.add(new tokens("TK_escreva", listaPalavras.get(y)[z], y, z));
-                        }
+                else if(listaPalavras.get(y)[z].matches("escreva")){
+                    token.add(new tokens("TK_escreva", listaPalavras.get(y)[z], y, z));
+                }
 
-                        if(listaPalavras.get(y)[z].matches("enquanto")){
-                            token.add(new tokens("TK_enquanto", listaPalavras.get(y)[z], y, z));
-                        }
+                else if(listaPalavras.get(y)[z].matches("enquanto")){
+                    token.add(new tokens("TK_enquanto", listaPalavras.get(y)[z], y, z));
+                }
 
-                        if(listaPalavras.get(y)[z].matches("se")){
-                            token.add(new tokens("TK_se", listaPalavras.get(y)[z], y, z));
-                        }
+                else if(listaPalavras.get(y)[z].matches("se")){
+                    token.add(new tokens("TK_se", listaPalavras.get(y)[z], y, z));
+                }
 
-                        if(listaPalavras.get(y)[z].matches("senao")){
-                            token.add(new tokens("TK_senao", listaPalavras.get(y)[z], y, z));
-                        }
-                    }
+                else if(listaPalavras.get(y)[z].matches("senao")){
+                    token.add(new tokens("TK_senao", listaPalavras.get(y)[z], y, z));
                 }
                 
                 else if (listaPalavras.get(y)[z].matches("[a-zA-Z]")){
@@ -185,7 +179,7 @@ public class analiseLexica {
                 System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
             }
             System.out.println("\nAnalize lexica concluida com sucesso!\n");
-            System.out.println("\n====================================================================================================================\n");
+            System.out.println("\n==================================================================\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
         }
 
