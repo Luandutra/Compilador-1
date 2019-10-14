@@ -36,18 +36,22 @@ public class analiseSintatica{
         
         mapaTabela mt = new mapaTabela();
         setTabelaSintatica(mt.tabelaSintatica());
+        ArrayList<String> log = new ArrayList<>();
         boolean conclusao = false;
-        ArrayList<log> lg = new ArrayList<>();
+        
         LinkedList<String> listaProducao = new LinkedList<>();
-        listaProducao.add("PROGRAMA");
+        listaProducao.add("PROGRAMA"); 
 
         while (!conclusao){
             if(listaTokens.isEmpty() && listaProducao.isEmpty()){
                 System.out.println("\nAnálise sintática concluida com sucesso, nenhum erro encontrado!\n");
                 conclusao = true;
-            } else{
-                lg.add(new log(listaTokens.peek(), listaProducao.peek()));             
+            } else{ 
+                log.add("\nToken no começo da lista: "+listaTokens.peek());
+                log.add("Produção no começo da lista: "+listaProducao.peek()+"\n");
                 if(listaTokens.peek().equals(listaProducao.peek())){
+                    log.add("Removeu o token do começo da lista: "+listaTokens.peek());
+                    log.add("Removeu a produção do começo da lista: "+listaProducao.peek()+"\n");
                     listaTokens.pop();
                     listaProducao.pop();
                 }
@@ -55,31 +59,33 @@ public class analiseSintatica{
                     Map<String, Integer> mapaInterno = (getTabelaSintatica().get(listaTokens.peek()));
                     if(mapaInterno.containsKey(listaProducao.peek())){
                         setListaProducao(SINTATICO.producaoTabela.producoes(mapaInterno.get(listaProducao.peek())));
+                        log.add("Removeu a produção do começo da lista: "+listaProducao.peek()+"\n");
                         listaProducao.pop();
                         if(!getListaProducao().isEmpty()){
                             Collections.reverse(getListaProducao());
                             for(int x = 0; x < getListaProducao().size(); x++){
                                 listaProducao.addFirst(getListaProducao().get(x));
+                                log.add("Adicionou a produção ao começo da lista: "+getListaProducao().get(x));
                             }
                         }
                     } else{
-                        System.out.println("Erro sintático, token: "+listaTokens.peek()+" em posição irregular\n");
+                        System.out.println("\nErro sintático, token: "+listaTokens.peek()+" em posição irregular\n");
                         conclusao = true;
                         return;
                     }
-                } else {
-                    System.out.println("Erro sintático, token: "+listaTokens.peek()+" em posição irregular\n");
+                } else{
+                    System.out.println("\nErro sintático, token: "+listaTokens.peek()+" em posição irregular\n");
                     conclusao = true;
                     return;
                 }
             }
         }
         if(argumentos.contains("-ls") | argumentos.contains("-tudo")){
-            System.out.println("==================================================================\n");
+            System.out.println("\n==================================================================\n");
             System.out.println("==============================LOG=================================\n");
-            for(log l : lg){
-                System.out.println("==================================================================\n");
-                System.out.println("Token no começo da fila: "+l.getToken()+ "\n" + "Produção no começo da fila: "+l.getCodigo()+"\n");
+            System.out.println("==================================================================\n");
+            for(int x = 0; x < log.size(); x++){
+                System.out.println(log.get(x));
             }
         }
     }
