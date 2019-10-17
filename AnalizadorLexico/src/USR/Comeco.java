@@ -12,7 +12,6 @@ public class Comeco {
         if(args.length > 0){
             for(int x = 0; x < args.length; x++){
                 arguemtos.add(args[x]);
-                System.out.println(arguemtos);
             }
         }
         

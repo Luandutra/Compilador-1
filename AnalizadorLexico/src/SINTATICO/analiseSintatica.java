@@ -50,8 +50,7 @@ public class analiseSintatica{
                 log.add("\nToken no começo da lista: "+listaTokens.peek());
                 log.add("Produção no começo da lista: "+listaProducao.peek()+"\n");
                 if(listaTokens.peek().equals(listaProducao.peek())){
-                    log.add("Removeu o token do começo da lista: "+listaTokens.peek());
-                    log.add("Removeu a produção do começo da lista: "+listaProducao.peek()+"\n");
+                    log.add("Removeu o token do começo da lista: "+listaTokens.peek()+"\n"+"Removeu a produção do começo da lista: "+listaProducao.peek()+"\n");
                     listaTokens.pop();
                     listaProducao.pop();
                 }
@@ -62,7 +61,6 @@ public class analiseSintatica{
                         log.add("Removeu a produção do começo da lista: "+listaProducao.peek()+"\n");
                         listaProducao.pop();
                         if(!getListaProducao().isEmpty()){
-                            Collections.reverse(getListaProducao());
                             for(int x = 0; x < getListaProducao().size(); x++){
                                 listaProducao.addFirst(getListaProducao().get(x));
                                 log.add("Adicionou a produção ao começo da lista: "+getListaProducao().get(x));
