@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.LinkedList;
 
-public class analiseSintatica extends interfaceTabela{
+public class analiseSintatica extends superTabela{
     
     public static void analisadorSintatico(ArrayList<String> argumentos, LinkedList<String> listaTokens){
         

@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-public class interfaceTabela {
+public class superTabela {
     
     private static Map<String, Map<String, Integer>> tabelaSintatica;
     private static LinkedList<String> listaProducao;
     
-    public interfaceTabela(){
+    public superTabela(){
         this.tabelaSintatica = new HashMap<>();
         this.listaProducao = new LinkedList<>();
     }

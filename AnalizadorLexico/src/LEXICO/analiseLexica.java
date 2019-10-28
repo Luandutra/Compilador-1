@@ -2,6 +2,7 @@ package LEXICO;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -13,6 +14,7 @@ public class analiseLexica {
         ArrayList<tokens> token = new ArrayList<>();
         ArrayList<erro> erros = new ArrayList<>();
         LinkedList<String> copiaTokens = new LinkedList();
+        List<String> copiaTkLex = new LinkedList();
         boolean modoString = false;
         String texto = "";
         
@@ -172,6 +174,7 @@ public class analiseLexica {
         if(argumento == false){
             System.out.println("\nAnalize lexica concluida com sucesso, nenhum erro identificado!"+"\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
+            //SEMANTICO.analiseSemantica.arg(argumentos);
         }
         
         if(argumento == true && argumentos.contains("-tudo")){
@@ -181,6 +184,7 @@ public class analiseLexica {
             System.out.println("\nAnalize lexica concluida com sucesso!\n");
             System.out.println("\n==================================================================\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
+            //SEMANTICO.analiseSemantica.arg(argumentos);
         }
 
         if(argumento == true && argumentos.contains("-lt") ){
@@ -192,6 +196,10 @@ public class analiseLexica {
         
         if(argumento == true && argumentos.contains("-ls")){
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
-        }        
+        }
+
+        if(argumento == true && argumentos.contains("-sl")){
+            SEMANTICO.analiseSemantica.analizadorSemantico(token);
+        }
     }
 }
