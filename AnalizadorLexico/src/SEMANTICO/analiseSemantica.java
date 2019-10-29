@@ -23,18 +23,14 @@ public class analiseSemantica {
         
         for(tokens t : token){
             if(t.getNome().equals("TK_variavel")){
-                varGeral.add(t.getNome());
                 varGeral.add(t.getLexemas());
                 int index = token.indexOf(t);
                 if(token.get(index - 1).getNome().equals("TK_int")){
-                    varIniciadas.add(t.getNome());
                     varIniciadas.add(t.getLexemas());
                 }
             }
         }
-        
         varGeral.removeAll(varIniciadas);
-        
         if(varGeral.isEmpty()){
             erro = false;
             msg += ("\nAnálise semântica concluida com sucesso, todas as variáveis iniciadas!\n");
