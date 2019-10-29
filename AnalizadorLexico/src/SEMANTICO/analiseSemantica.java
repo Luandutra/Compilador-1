@@ -6,13 +6,13 @@ import java.util.ArrayList;
 public class analiseSemantica {
     
     static ArrayList<String> arg = new ArrayList<>();
-    static String msg = "";
     static boolean erro = false;
+    static String msg = "";
     
     public static void analizadorSemantico(ArrayList<String> argumentos, ArrayList<tokens> token){
         variaveisIniciadas(token);
         declaracaoVarRepetidas(token);
-        //divisaoZero(token);
+        divisaoZero(token);
     }
     
     
@@ -82,18 +82,45 @@ public class analiseSemantica {
     
     public static void divisaoZero(ArrayList<tokens> token){
         msg = "";
-        ArrayList<String> div = new ArrayList<>();
+        String div = null;
+        String valor = null;
         
         for(tokens t : token){
             if(t.getNome().equals("TK_div")){
                 int index = token.indexOf(t);
                 if(token.get(index + 1).getNome().equals("TK_variavel")){
-                    div.add(t.getLexemas());
-                    if(div.equals(0)){
+                    div = token.get(index + 1).getLexemas();
+                    for(tokens t1 : token){
+                        if(t1.getLexemas().equals(div)){
+                            int index2 = token.indexOf(t1);
+                            if(token.get(index2 - 1).getNome().equals("TK_int")){
+                                valor = token.get(index2 + 2).getLexemas();
+                                if(valor.equals("0")){
+                                    erro = true;
+                                    msg += ("\nERRO SEMÂNTICO\n");
+                                    msg += ("\nDivisão por zero. A variavel: "+div+" esta sendo usada em uma divisão!");
+                                    imprimeMSG(erro, msg);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        for(tokens t : token){
+            if(t.getNome().equals("TK_div")){
+                int index = token.indexOf(t);
+                if(token.get(index + 1).getNome().equals("TK_numpos") 
+                        | token.get(index + 1).getNome().equals("TK_numneg")){
+                    valor = token.get(index + 1).getLexemas();
+                    if(valor.equals("0")){
                         erro = true;
                         msg += ("\nERRO SEMÂNTICO\n");
-                        msg += ("\nDivisão por zero, "+"linha: "+t.getLinha()+" | "+"coluna: "+t.getColuna());
+                        msg += ("\nDivisão por zero. O valor: "+valor+" esta sendo usada em uma divisão!");
                         imprimeMSG(erro, msg);
+                        return;
                     }
                 }
             }
