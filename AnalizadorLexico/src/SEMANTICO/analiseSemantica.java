@@ -15,7 +15,6 @@ public class analiseSemantica {
         divisaoZero(token);
     }
     
-    
     public static void variaveisIniciadas(ArrayList<tokens> token){
         msg = "";
         ArrayList<String> varGeral = new ArrayList<>();
@@ -24,8 +23,8 @@ public class analiseSemantica {
         for(tokens t : token){
             if(t.getNome().equals("TK_variavel")){
                 varGeral.add(t.getLexemas());
-                int index = token.indexOf(t);
-                if(token.get(index - 1).getNome().equals("TK_int")){
+                int indexAtual = token.indexOf(t);
+                if(token.get(indexAtual - 1).getNome().equals("TK_int")){
                     varIniciadas.add(t.getLexemas());
                 }
             }
@@ -50,8 +49,8 @@ public class analiseSemantica {
         
         for(tokens t : token){
             if(t.getNome().equals("TK_variavel")){
-                int index = token.indexOf(t);
-                if(token.get(index - 1).getNome().equals("TK_int")){
+                int indexAtual = token.indexOf(t);
+                if(token.get(indexAtual - 1).getNome().equals("TK_int")){
                     var.add(t.getLexemas());
                 }
             }
@@ -83,14 +82,14 @@ public class analiseSemantica {
         
         for(tokens t : token){
             if(t.getNome().equals("TK_div")){
-                int index = token.indexOf(t);
-                if(token.get(index + 1).getNome().equals("TK_variavel")){
-                    div = token.get(index + 1).getLexemas();
+                int indexAtual = token.indexOf(t);
+                if(token.get(indexAtual + 1).getNome().equals("TK_variavel")){
+                    div = token.get(indexAtual + 1).getLexemas();
                     for(tokens t1 : token){
                         if(t1.getLexemas().equals(div)){
-                            int index2 = token.indexOf(t1);
-                            if(token.get(index2 - 1).getNome().equals("TK_int")){
-                                valor = token.get(index2 + 2).getLexemas();
+                            int indexAtual2 = token.indexOf(t1);
+                            if(token.get(indexAtual2 - 1).getNome().equals("TK_int")){
+                                valor = token.get(indexAtual2 + 2).getLexemas();
                                 if(valor.equals("0")){
                                     erro = true;
                                     msg += ("\nERRO SEMÂNTICO\n");
@@ -107,10 +106,10 @@ public class analiseSemantica {
         
         for(tokens t : token){
             if(t.getNome().equals("TK_div")){
-                int index = token.indexOf(t);
-                if(token.get(index + 1).getNome().equals("TK_numpos") 
-                        | token.get(index + 1).getNome().equals("TK_numneg")){
-                    valor = token.get(index + 1).getLexemas();
+                int indexAtual = token.indexOf(t);
+                if(token.get(indexAtual + 1).getNome().equals("TK_numpos") 
+                        | token.get(indexAtual + 1).getNome().equals("TK_numneg")){
+                    valor = token.get(indexAtual + 1).getLexemas();
                     if(valor.equals("0")){
                         erro = true;
                         msg += ("\nERRO SEMÂNTICO\n");
