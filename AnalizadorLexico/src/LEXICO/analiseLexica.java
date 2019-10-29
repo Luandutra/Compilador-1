@@ -14,7 +14,6 @@ public class analiseLexica {
         ArrayList<tokens> token = new ArrayList<>();
         ArrayList<erro> erros = new ArrayList<>();
         LinkedList<String> copiaTokens = new LinkedList();
-        List<String> copiaTkLex = new LinkedList();
         boolean modoString = false;
         String texto = "";
         
@@ -172,26 +171,25 @@ public class analiseLexica {
         }
         
         if(argumento == false){
-            System.out.println("\nAnalize lexica concluida com sucesso, nenhum erro identificado!"+"\n");
+            System.out.println("\nAnalize lexica concluida com sucesso!\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
             SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
         }
         
         if(argumento == true && argumentos.contains("-tudo")){
+            System.out.println("\nAnalize lexica concluida com sucesso!\n");
             for(tokens t : token){
                 System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
             }
-            System.out.println("\nAnalize lexica concluida com sucesso!\n");
-            System.out.println("\n==================================================================\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
             SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
         }
 
         if(argumento == true && argumentos.contains("-lt") ){
+            System.out.println("\nAnalize lexica concluida com sucesso!\n");
             for(tokens t : token){
                 System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
             }
-            System.out.println("\nAnalize lexica concluida com sucesso!"+"\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
             SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
         }       
@@ -202,7 +200,9 @@ public class analiseLexica {
             SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
         }
 
-        if(argumento == true && argumentos.contains("-sl")){
+        if(argumento == true && argumentos.contains("-lse")){
+            System.out.println("\nAnalize lexica concluida com sucesso!\n");
+            SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
             SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
         }
     }

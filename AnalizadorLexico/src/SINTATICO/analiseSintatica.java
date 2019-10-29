@@ -32,7 +32,7 @@ public class analiseSintatica extends superTabela{
                     } 
                 } else{
                     if(listaTokens.isEmpty() && listaProducao.isEmpty()){
-                        System.out.println("\nAnálise sintática concluida com sucesso, nenhum erro encontrado!\n");
+                        System.out.println("\nAnálise sintática concluida com sucesso!\n");
                         conclusao = true;
                     } else{
                         if(listaTokens.peek().equals(listaProducao.peek())){
@@ -48,7 +48,7 @@ public class analiseSintatica extends superTabela{
                 }
             } else{
                 if(listaTokens.isEmpty() && listaProducao.isEmpty()){
-                    System.out.println("\nAnálise sintática concluida com sucesso, nenhum erro encontrado!\n");
+                    System.out.println("\nAnálise sintática concluida com sucesso!\n");
                     conclusao = true;
                 } else{
                     if(listaTokens.peek().equals(listaProducao.peek())){

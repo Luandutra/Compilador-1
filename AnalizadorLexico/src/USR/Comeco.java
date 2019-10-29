@@ -17,7 +17,7 @@ public class Comeco {
         
         String arquivo = arguemtos.get(0);
 
-        if(arguemtos.contains("-tudo") | arguemtos.contains("-lt") | arguemtos.contains("-ls") | arguemtos.contains("-sl")){
+        if(arguemtos.contains("-tudo") | arguemtos.contains("-lt") | arguemtos.contains("-ls") | arguemtos.contains("-lse")){
             arg = true;
         } else{
             arg = false;
