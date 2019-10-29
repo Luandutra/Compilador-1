@@ -94,7 +94,7 @@ public class analiseLexica {
                     token.add(new tokens("TK_diferente", listaPalavras.get(y)[z], y, z));
                 }
 
-                else if (listaPalavras.get(y)[z].matches("\\+\\+]")){
+                else if (listaPalavras.get(y)[z].matches("\\+\\+")){
                     token.add(new tokens("TK_incremento", listaPalavras.get(y)[z], y, z));
                 }
 
@@ -174,7 +174,7 @@ public class analiseLexica {
         if(argumento == false){
             System.out.println("\nAnalize lexica concluida com sucesso, nenhum erro identificado!"+"\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
-            //SEMANTICO.analiseSemantica.arg(argumentos);
+            SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
         }
         
         if(argumento == true && argumentos.contains("-tudo")){
@@ -184,7 +184,7 @@ public class analiseLexica {
             System.out.println("\nAnalize lexica concluida com sucesso!\n");
             System.out.println("\n==================================================================\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
-            //SEMANTICO.analiseSemantica.arg(argumentos);
+            SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
         }
 
         if(argumento == true && argumentos.contains("-lt") ){
@@ -192,14 +192,18 @@ public class analiseLexica {
                 System.out.println("Token: "+t.getNome()+" -> "+"Lexema: "+t.getLexemas()+" -> "+"Linha: "+t.getLinha()+" -> "+"Coluna: "+t.getColuna());
             }
             System.out.println("\nAnalize lexica concluida com sucesso!"+"\n");
+            SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
+            SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
         }       
         
         if(argumento == true && argumentos.contains("-ls")){
+            System.out.println("\nAnalize lexica concluida com sucesso!\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
+            SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
         }
 
         if(argumento == true && argumentos.contains("-sl")){
-            SEMANTICO.analiseSemantica.analizadorSemantico(token);
+            SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
         }
     }
 }
