@@ -42,7 +42,7 @@ public class analiseSintatica extends superTabela{
                         } else{
                             System.out.println("\nErro sintático, token: "+listaTokens.peek()+" em posição irregular\n");
                             conclusao = true;
-                            return;
+                            System.exit(0);
                         }
                     }
                 }
@@ -58,7 +58,7 @@ public class analiseSintatica extends superTabela{
                     } else{
                         System.out.println("\nErro sintático, token: "+listaTokens.peek()+" em posição irregular\n");
                         conclusao = true;
-                        return;
+                        System.exit(0);
                     }
                 }
             }

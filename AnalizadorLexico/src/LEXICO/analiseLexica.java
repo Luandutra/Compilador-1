@@ -2,7 +2,6 @@ package LEXICO;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -163,7 +162,7 @@ public class analiseLexica {
             for(erro e : erros){
                 System.out.println("Caractere(s): "+e.getNome()+" não identificado"+" -> "+"Linha: "+e.getLinha()+" -> "+"Coluna: "+e.getColuna()+"\n");
             }
-            return;
+            System.exit(0);
         }
         
         for(tokens t : token){
@@ -204,6 +203,13 @@ public class analiseLexica {
             System.out.println("\nAnalize lexica concluida com sucesso!\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
             SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
+        }
+        
+        if(argumento == true && argumentos.contains("-cod")){
+            System.out.println("\nAnalize lexica concluida com sucesso!\n");
+            SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
+            SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
+            GERACODIGO.geradorCodigo.geracaoCodigo(argumentos, token);
         }
     }
 }
