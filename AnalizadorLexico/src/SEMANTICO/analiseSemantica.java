@@ -42,12 +42,12 @@ public class analiseSemantica {
         if(varGeral.isEmpty()){
             erro = false;
             log += ("\n\nVerificação de declaração de variaveis concluida com sucesso, todas as variáveis iniciadas!");
-            imprimeLog(argumentos ,erro, log, logErro);
+            imprimeLog(argumentos, erro, log, logErro);
         } else{
             erro = true;
             logErro += ("\n\nERRO SEMÂNTICO\n");
             logErro += ("\nVariavel: "+varGeral+" não iniciada!\n");
-            imprimeLog(argumentos ,erro, log, logErro);
+            imprimeLog(argumentos, erro, log, logErro);
             System.exit(0);
         }
     }
@@ -79,7 +79,7 @@ public class analiseSemantica {
                         erro = true;
                         logErro += ("\n\nERRO SEMÂNTICO\n");
                         logErro += ("\nVariavel: "+var.get(i)+" possui mais de uma declaração!");
-                        imprimeLog(argumentos ,erro, log, logErro);
+                        imprimeLog(argumentos, erro, log, logErro);
                         System.exit(0);
                     }
                 }
@@ -88,7 +88,7 @@ public class analiseSemantica {
         
         erro = false;
         log += ("\n\nVerificação de declaração de variaveis concluida com sucesso, nenhuma declaração de variável duplicada!\n");
-        imprimeLog(argumentos ,erro, log, logErro);
+        imprimeLog(argumentos, erro, log, logErro);
     }
     
     public static void divisaoZero(ArrayList<String> argumentos, ArrayList<tokens> token){
@@ -118,7 +118,7 @@ public class analiseSemantica {
                                     erro = true;
                                     logErro += ("\n\nERRO SEMÂNTICO\n");
                                     logErro += ("\nDivisão por zero. A variavel: "+div+" esta sendo usada em uma divisão!");
-                                    imprimeLog(argumentos ,erro, log, logErro);
+                                    imprimeLog(argumentos, erro, log, logErro);
                                     System.exit(0);
                                 }
                             }
@@ -140,7 +140,7 @@ public class analiseSemantica {
                         erro = true;
                         logErro += ("\n\nERRO SEMÂNTICO\n");
                         logErro += ("\nDivisão por zero. O valor: "+valor+" esta sendo usada em uma divisão\n!");
-                        imprimeLog(argumentos ,erro, log, logErro);
+                        imprimeLog(argumentos, erro, log, logErro);
                         System.exit(0);
                     }
                 }
@@ -149,7 +149,7 @@ public class analiseSemantica {
         
         erro = false;
         log += ("\n\nVerificação de divisção por zero concluida com sucesso, nenhuma divisão por zero encontrada!\n");
-        imprimeLog(argumentos ,erro, log, logErro);
+        imprimeLog(argumentos, erro, log, logErro);
     }
     
     public static void imprimeLog(ArrayList<String> argumentos, boolean erro, String log, String logErro){

@@ -1,12 +1,18 @@
 package GERACODIGO;
 
 import LEXICO.tokens;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class geradorCodigo {
     
     public static void geracaoCodigo(ArrayList<String> argumentos, ArrayList<tokens> token){
         ArrayList<String> codigo = new ArrayList<>();
+        String valor1 = "";
+        String valor2 = "";
+        int contSoma1 = 2;
+        int contSoma2 = 3;
         
         for(tokens t : token){
             if(t.getNome().equals("TK_inicio")){
@@ -75,16 +81,70 @@ public class geradorCodigo {
         for(tokens t : token){
             if(t.getNome().equals("TK_soma")){
                 int indexAtual = token.indexOf(t);
-                codigo.add("mov eax, " + token.get(indexAtual - 1).getLexemas());
-                codigo.add("mov ebx, " + token.get(indexAtual + 2).getLexemas());
-                codigo.add("add eax, abx");
-                while (token.get(indexAtual + 1).getLexemas().equals("TK_soma")) {
-                    codigo.add("mov ebx, " + token.get(indexAtual + 1).getLexemas());
-                    codigo.add("add eax, abx");
+                if(token.get(indexAtual - 1).getNome().equals("TK_variavel")){
+                    String variavel = token.get(indexAtual - 1).getLexemas();
+                    for(tokens t1 : token){
+                        if(t1.getLexemas().equals(variavel)){
+                            int indexAtual1 = token.indexOf(t1);
+                            if(token.get(indexAtual1 - 1).getNome().equals("TK_int")){
+                                valor1 = token.get(indexAtual1 + 2).getLexemas();
+                            }
+                        }
+                    }
+                } else{
+                    if(token.get(indexAtual - 1).getNome().equals("TK_numpos") | token.get(indexAtual - 1).getNome().equals("TK_neg")){
+                        int indexAtual1 = token.indexOf(t);
+                        valor1 = token.get(indexAtual1 - 1).getLexemas();
+                    }
                 }
+                if(token.get(indexAtual + 1).getNome().equals("TK_variavel")){
+                    String variavel = token.get(indexAtual + 1).getLexemas();
+                    for(tokens t1 : token){
+                        if(t1.getLexemas().equals(variavel)){
+                            int indexAtual1 = token.indexOf(t1);
+                            if(token.get(indexAtual1 - 1).getNome().equals("TK_int")){
+                                valor2 = token.get(indexAtual1 + 2).getLexemas();
+                            }
+                        }
+                    }
+                } else{
+                    if(token.get(indexAtual + 1).getNome().equals("TK_numpos") | token.get(indexAtual - 1).getNome().equals("TK_neg")){
+                        int indexAtual1 = token.indexOf(t);
+                        valor2 = token.get(indexAtual1 + 1).getLexemas();
+                    }
+                }
+
+                codigo.add("mov eax, " + valor1);
+                codigo.add("mov ebx, " + valor2);
+                codigo.add("add eax, abx");
+                
+                /*
+                while(token.get(indexAtual + contSoma1).getLexemas().equals("TK_soma")){
+                    if(token.get(indexAtual + contSoma2).getNome().equals("TK_variavel")){
+                    String variavel = token.get(indexAtual - 1).getNome();
+                    for(tokens t1 : token){
+                        if(t1.getNome().equals(variavel)){
+                            int indexAtual1 = token.indexOf(t1);
+                            valor1 = token.get(indexAtual1).getLexemas();
+                        }
+                    }
+                } else{
+                    if(token.get(indexAtual - 1).getNome().equals("TK_numpos") | token.get(indexAtual - 1).getNome().equals("TK_neg")){
+                        int indexAtual1 = token.indexOf(t);
+                        valor1 = token.get(indexAtual1 - 1).getLexemas();
+                    }
+                }
+                    
+                    codigo.add("mov ebx, " + valor2);
+                    codigo.add("add eax, abx");
+                    contSoma1 = contSoma1 + 2;
+                    contSoma2 = contSoma2 + 3;
+                }
+                */
             }
         }
         
+        /*
         for(tokens t : token){
             if(t.getNome().equals("TK_sub")){
                 int indexAtual = token.indexOf(t);
@@ -97,6 +157,7 @@ public class geradorCodigo {
                 }
             }
         }
+        */
         
         for(tokens t : token){
             if(t.getNome().equals("TK_string")){
@@ -109,6 +170,17 @@ public class geradorCodigo {
                 codigo.add("invoke ExitProcess, NULL");
                 codigo.add("end start");
             }
-        } 
+        }
+       
+        try {
+            FileWriter arquivo = new FileWriter("teste.txt");
+            PrintWriter gravaArquivo = new PrintWriter(arquivo);
+            for(int i = 0; i < codigo.size(); i++){
+                gravaArquivo.println(codigo.get(i));
+            }
+            gravaArquivo.close();
+            System.out.println("Arquivo gravado com sucesso");
+        } catch (Exception e) {
+        }
     }
 }
