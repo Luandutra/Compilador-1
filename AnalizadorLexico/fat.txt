@@ -1,5 +1,6 @@
 inicio
 inteiro a = 1 ;
 inteiro b = 3 ;
-a = a + b ;
+inteiro c = 5 ;
+a = a - b ;
 fim
