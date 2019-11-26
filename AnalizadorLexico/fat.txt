@@ -2,5 +2,5 @@ inicio
 inteiro a = 1 ;
 inteiro b = 3 ;
 inteiro c = 5 ;
-a = a - b ;
+a = a + b + c ;
 fim

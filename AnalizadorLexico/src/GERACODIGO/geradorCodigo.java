@@ -57,7 +57,7 @@ public class geradorCodigo {
         
         cont = 0;
         for(tokens t : token){
-            if(t.getNome().equals("TK_soma")){
+            if(t.getNome().equals("TK_mult")){
                 int indexAtual = token.indexOf(t);
                 if(token.get(indexAtual - 1).getNome().equals("TK_variavel")){
                     String variavel = token.get(indexAtual - 1).getLexemas();
@@ -76,7 +76,6 @@ public class geradorCodigo {
                         valor1 = token.get(indexAtual1 - 1).getLexemas();
                     }
                 }
-                
                 if(token.get(indexAtual + 1).getNome().equals("TK_variavel")){
                     String variavel = token.get(indexAtual + 1).getLexemas();
                     for(tokens t1 : token){
@@ -94,7 +93,57 @@ public class geradorCodigo {
                         valor2 = token.get(indexAtual1 + 1).getLexemas();
                     }
                 }
-                
+                if(cont <= 0){
+                    codigo.add("mov eax, " + valor1);
+                    codigo.add("mov ebx, " + valor2);
+                    codigo.add("imul eax, ebx");
+                    cont++;
+                }else{
+                    codigo.add("mov ebx, " + valor2);
+                    codigo.add("imul eax, ebx");
+                    cont++;
+                }
+            }
+        }
+        
+        cont = 0;
+        for(tokens t : token){
+            if(t.getNome().equals("TK_soma")){
+                int indexAtual = token.indexOf(t);
+                if(token.get(indexAtual - 1).getNome().equals("TK_variavel")){
+                    String variavel = token.get(indexAtual - 1).getLexemas();
+                    for(tokens t1 : token){
+                        if(t1.getLexemas().equals(variavel)){
+                            int indexAtual1 = token.indexOf(t1);
+                            if(token.get(indexAtual1 - 1).getNome().equals("TK_int")){
+                                valor1 = token.get(indexAtual1 + 2).getLexemas();
+                            }
+                        }
+                    }
+                } else{
+                    if(token.get(indexAtual - 1).getNome().equals("TK_numpos") 
+                            | token.get(indexAtual - 1).getNome().equals("TK_neg")){
+                        int indexAtual1 = token.indexOf(t);
+                        valor1 = token.get(indexAtual1 - 1).getLexemas();
+                    }
+                }                
+                if(token.get(indexAtual + 1).getNome().equals("TK_variavel")){
+                    String variavel = token.get(indexAtual + 1).getLexemas();
+                    for(tokens t1 : token){
+                        if(t1.getLexemas().equals(variavel)){
+                            int indexAtual1 = token.indexOf(t1);
+                            if(token.get(indexAtual1 - 1).getNome().equals("TK_int")){
+                                valor2 = token.get(indexAtual1 + 2).getLexemas();
+                            }
+                        }
+                    }
+                } else{
+                    if(token.get(indexAtual + 1).getNome().equals("TK_numpos") 
+                            | token.get(indexAtual - 1).getNome().equals("TK_neg")){
+                        int indexAtual1 = token.indexOf(t);
+                        valor2 = token.get(indexAtual1 + 1).getLexemas();
+                    }
+                }               
                 if(cont <= 0){
                     codigo.add("mov eax, " + valor1);
                     codigo.add("mov ebx, " + valor2);
@@ -128,8 +177,7 @@ public class geradorCodigo {
                         int indexAtual1 = token.indexOf(t);
                         valor1 = token.get(indexAtual1 - 1).getLexemas();
                     }
-                }
-                
+                } 
                 if(token.get(indexAtual + 1).getNome().equals("TK_variavel")){
                     String variavel = token.get(indexAtual + 1).getLexemas();
                     for(tokens t1 : token){
@@ -146,8 +194,7 @@ public class geradorCodigo {
                         int indexAtual1 = token.indexOf(t);
                         valor2 = token.get(indexAtual1 + 1).getLexemas();
                     }
-                }
-                
+                } 
                 if(cont <= 0){
                     codigo.add("mov eax, " + valor1);
                     codigo.add("mov ebx, " + valor2);
@@ -182,7 +229,7 @@ public class geradorCodigo {
                 }
             }
             System.out.println("\nGeração de codigo realizada com sucesso.");
-        } catch (IOException e) {
+        } catch (IOException e){
             System.out.println("ERRO: Problema na criação do arquivo -> "+e);
         }
     }
