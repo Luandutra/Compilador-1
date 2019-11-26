@@ -26,15 +26,28 @@ public class geradorCodigo {
                 codigo.add("includelib \\masm32\\lib\\user32.lib");
                 codigo.add("includelib \\masm32\\lib\\kernel32.lib");
                 codigo.add("");
+                codigo.add(".data");
             }
         }
         
+        cont = 0;
+        for(tokens t : token){
+            if(t.getNome().equals("TK_mult") | t.getNome().equals("TK_soma") 
+                    | t.getNome().equals("TK_div") | t.getNome().equals("TK_sub")){
+                if(cont <= 0){
+                    codigo.add("res dword 1");
+                    codigo.add("");
+                    cont++;
+                }
+            }
+        }
+        
+        cont = 0;
         for(tokens t : token){
             if(t.getNome().equals("TK_escreva")){
                 for(tokens t1 : token){
                     if(t1.getNome().equals("TK_string")){
                         int indexAtual = token.indexOf(t1);
-                        codigo.add(".data");
                         codigo.add("szCaption   db  'PROGAMA', 0");
                         codigo.add("szText      db  "+"'"+token.get(indexAtual).getLexemas()+"'"+", 0");
                         codigo.add("");
@@ -97,10 +110,12 @@ public class geradorCodigo {
                     codigo.add("mov eax, " + valor1);
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("imul eax, ebx");
+                    codigo.add("mov res, eax");
                     cont++;
                 }else{
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("imul eax, ebx");
+                    codigo.add("mov res, eax");
                     cont++;
                 }
             }
@@ -148,10 +163,12 @@ public class geradorCodigo {
                     codigo.add("mov eax, " + valor1);
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("add eax, ebx");
+                    codigo.add("mov res, eax");
                     cont++;
                 }else{
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("add eax, ebx");
+                    codigo.add("mov res, eax");
                     cont++;
                 }
             }
@@ -199,10 +216,12 @@ public class geradorCodigo {
                     codigo.add("mov eax, " + valor1);
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("sub eax, ebx");
+                    codigo.add("mov res, eax");
                     cont++;
                 }else{
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("sub eax, ebx");
+                    codigo.add("mov res, eax");
                     cont++;
                 }
             }
