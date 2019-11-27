@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class geradorCodigo {
+public class geradorCodigo{
     
     public static void geracaoCodigo(ArrayList<String> argumentos, ArrayList<tokens> token){
         ArrayList<String> codigo = new ArrayList<>();
@@ -33,12 +33,15 @@ public class geradorCodigo {
         cont = 0;
         for(tokens t : token){
             if(t.getNome().equals("TK_mult") | t.getNome().equals("TK_soma") 
-                    | t.getNome().equals("TK_div") | t.getNome().equals("TK_sub")){
+                    | t.getNome().equals("TK_sub") | t.getNome().equals("TK_leia")){
                 if(cont <= 0){
-                    codigo.add("res dword 1");
+                    codigo.add("var dword 1");
                     codigo.add("");
                     cont++;
                 }
+            }
+            if(t.getNome().equals("TK_div")){
+                codigo.add("");
             }
         }
         
@@ -110,12 +113,64 @@ public class geradorCodigo {
                     codigo.add("mov eax, " + valor1);
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("imul eax, ebx");
-                    codigo.add("mov res, eax");
+                    codigo.add("mov var, eax");
                     cont++;
                 }else{
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("imul eax, ebx");
-                    codigo.add("mov res, eax");
+                    codigo.add("mov var, eax");
+                    cont++;
+                }
+            }
+        }
+        
+        cont = 0;
+        for(tokens t : token){
+            if(t.getNome().equals("TK_div")){
+                int indexAtual = token.indexOf(t);
+                if(token.get(indexAtual - 1).getNome().equals("TK_variavel")){
+                    String variavel = token.get(indexAtual - 1).getLexemas();
+                    for(tokens t1 : token){
+                        if(t1.getLexemas().equals(variavel)){
+                            int indexAtual1 = token.indexOf(t1);
+                            if(token.get(indexAtual1 - 1).getNome().equals("TK_int")){
+                                valor1 = token.get(indexAtual1 + 2).getLexemas();
+                            }
+                        }
+                    }
+                } else{
+                    if(token.get(indexAtual - 1).getNome().equals("TK_numpos") 
+                            | token.get(indexAtual - 1).getNome().equals("TK_neg")){
+                        int indexAtual1 = token.indexOf(t);
+                        valor1 = token.get(indexAtual1 - 1).getLexemas();
+                    }
+                }                
+                if(token.get(indexAtual + 1).getNome().equals("TK_variavel")){
+                    String variavel = token.get(indexAtual + 1).getLexemas();
+                    for(tokens t1 : token){
+                        if(t1.getLexemas().equals(variavel)){
+                            int indexAtual1 = token.indexOf(t1);
+                            if(token.get(indexAtual1 - 1).getNome().equals("TK_int")){
+                                valor2 = token.get(indexAtual1 + 2).getLexemas();
+                            }
+                        }
+                    }
+                } else{
+                    if(token.get(indexAtual + 1).getNome().equals("TK_numpos") 
+                            | token.get(indexAtual - 1).getNome().equals("TK_neg")){
+                        int indexAtual1 = token.indexOf(t);
+                        valor2 = token.get(indexAtual1 + 1).getLexemas();
+                    }
+                }               
+                if(cont <= 0){
+                    codigo.add("mov eax, " + valor1);
+                    codigo.add("mov ebx, " + valor2);
+                    codigo.add("sub edx, edx");
+                    codigo.add("div ebx");
+                    cont++;
+                }else{
+                    codigo.add("mov ebx, " + valor2);
+                    codigo.add("div ebx");
                     cont++;
                 }
             }
@@ -163,12 +218,12 @@ public class geradorCodigo {
                     codigo.add("mov eax, " + valor1);
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("add eax, ebx");
-                    codigo.add("mov res, eax");
+                    codigo.add("mov var, eax");
                     cont++;
                 }else{
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("add eax, ebx");
-                    codigo.add("mov res, eax");
+                    codigo.add("mov var, eax");
                     cont++;
                 }
             }
@@ -216,12 +271,12 @@ public class geradorCodigo {
                     codigo.add("mov eax, " + valor1);
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("sub eax, ebx");
-                    codigo.add("mov res, eax");
+                    codigo.add("mov var, eax");
                     cont++;
                 }else{
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("sub eax, ebx");
-                    codigo.add("mov res, eax");
+                    codigo.add("mov var, eax");
                     cont++;
                 }
             }
