@@ -170,7 +170,6 @@ public class analiseSemantica {
                 cont--;
             }
         }
-        
         else{
             System.out.println(logErro);
         }

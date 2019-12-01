@@ -19,7 +19,7 @@ public class Comeco {
 
         if(arguemtos.contains("-tudo") | arguemtos.contains("-lt") 
                 | arguemtos.contains("-ls") | arguemtos.contains("-lse")
-                | arguemtos.contains("-cod")){
+                | arguemtos.contains("-lgc")){
             arg = true;
         } else{
             arg = false;

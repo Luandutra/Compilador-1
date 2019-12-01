@@ -173,6 +173,7 @@ public class analiseLexica {
             System.out.println("\nAnalize lexica concluida com sucesso!\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
             SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
+            GERACODIGO.geradorCodigo.geracaoCodigo(argumentos, token);
         }
         
         if(argumento == true && argumentos.contains("-tudo")){
@@ -182,6 +183,7 @@ public class analiseLexica {
             }
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
             SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
+            GERACODIGO.geradorCodigo.geracaoCodigo(argumentos, token);
         }
 
         if(argumento == true && argumentos.contains("-lt") ){
@@ -191,24 +193,27 @@ public class analiseLexica {
             }
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
             SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
+            GERACODIGO.geradorCodigo.geracaoCodigo(argumentos, token);
         }       
         
         if(argumento == true && argumentos.contains("-ls")){
             System.out.println("\nAnalize lexica concluida com sucesso!\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
             SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
+            GERACODIGO.geradorCodigo.geracaoCodigo(argumentos, token);
         }
 
         if(argumento == true && argumentos.contains("-lse")){
             System.out.println("\nAnalize lexica concluida com sucesso!\n");
             SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
             SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
+            GERACODIGO.geradorCodigo.geracaoCodigo(argumentos, token);
         }
         
-        if(argumento == true && argumentos.contains("-cod")){
-            //System.out.println("\nAnalize lexica concluida com sucesso!\n");
-            //SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
-            //SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
+        if(argumento == true && argumentos.contains("-lgc")){
+            System.out.println("\nAnalize lexica concluida com sucesso!\n");
+            SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
+            SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
             GERACODIGO.geradorCodigo.geracaoCodigo(argumentos, token);
         }
     }

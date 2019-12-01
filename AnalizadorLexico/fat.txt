@@ -2,6 +2,6 @@ inicio
 inteiro a = 4 ;
 inteiro b = 2 ;
 inteiro c = 5 ;
-a = a / b ;
-escreva ( "oiii tudo bem" ) ;
+a = a + b ;
+escreva ( a ) ;
 fim
