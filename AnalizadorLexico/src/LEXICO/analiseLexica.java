@@ -206,6 +206,9 @@ public class analiseLexica {
         }
         
         if(argumento == true && argumentos.contains("-cod")){
+            //System.out.println("\nAnalize lexica concluida com sucesso!\n");
+            //SINTATICO.analiseSintatica.analisadorSintatico(argumentos, copiaTokens);
+            //SEMANTICO.analiseSemantica.analizadorSemantico(argumentos, token);
             GERACODIGO.geradorCodigo.geracaoCodigo(argumentos, token);
         }
     }

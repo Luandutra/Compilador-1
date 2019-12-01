@@ -20,11 +20,7 @@ public class geradorCodigo{
                 codigo.add(".model flat, stdcall");
                 codigo.add("option casemap: none");
                 codigo.add("");
-                codigo.add("include \\masm32\\include\\windows.inc");
-                codigo.add("include \\masm32\\include\\user32.inc");
-                codigo.add("include \\masm32\\include\\kernel32.inc");
-                codigo.add("includelib \\masm32\\lib\\user32.lib");
-                codigo.add("includelib \\masm32\\lib\\kernel32.lib");
+                codigo.add("include \\masm32\\include\\masm32rt.inc");
                 codigo.add("");
                 codigo.add(".data");
             }
@@ -33,15 +29,12 @@ public class geradorCodigo{
         cont = 0;
         for(tokens t : token){
             if(t.getNome().equals("TK_mult") | t.getNome().equals("TK_soma") 
-                    | t.getNome().equals("TK_sub") | t.getNome().equals("TK_leia")){
+                    | t.getNome().equals("TK_div") | t.getNome().equals("TK_sub") 
+                    | t.getNome().equals("TK_leia")){
                 if(cont <= 0){
-                    codigo.add("var dword 1");
-                    codigo.add("");
+                    codigo.add("var dd 1");
                     cont++;
                 }
-            }
-            if(t.getNome().equals("TK_div")){
-                codigo.add("");
             }
         }
         
@@ -51,8 +44,7 @@ public class geradorCodigo{
                 for(tokens t1 : token){
                     if(t1.getNome().equals("TK_string")){
                         int indexAtual = token.indexOf(t1);
-                        codigo.add("szCaption   db  'PROGAMA', 0");
-                        codigo.add("szText      db  "+"'"+token.get(indexAtual).getLexemas()+"'"+", 0");
+                        codigo.add("msg  db  "+token.get(indexAtual).getLexemas()+",13,10,0");
                         codigo.add("");
                     }
                 }
@@ -65,8 +57,17 @@ public class geradorCodigo{
         for(tokens t : token){
             if(t.getNome().equals("TK_leia")){
                 int indexAtual = token.indexOf(t);
-                if(token.get(indexAtual + 2).getLexemas().equals("TK_variavel")){
+                if(token.get(indexAtual + 2).getNome().equals("TK_variavel")){
                     codigo.add("mov eax, " + token.get(indexAtual + 2).getLexemas());
+                    codigo.add("mov var, eax");
+                    codigo.add("mov eax, var");
+                }
+                else if(token.get(indexAtual + 2).getNome().equals("TK_numpos") 
+                        | token.get(indexAtual + 2).getNome().equals("TK_numneg") ){
+                    valor1 = token.get(indexAtual + 2).getLexemas();
+                    codigo.add("mov eax, " + valor1);
+                    codigo.add("mov var, eax");
+                    codigo.add("mov eax, var");
                 }
             }
         }
@@ -114,11 +115,13 @@ public class geradorCodigo{
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("imul eax, ebx");
                     codigo.add("mov var, eax");
+                    codigo.add("mov eax, var");
                     cont++;
                 }else{
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("imul eax, ebx");
                     codigo.add("mov var, eax");
+                    codigo.add("mov eax, var");
                     cont++;
                 }
             }
@@ -167,10 +170,15 @@ public class geradorCodigo{
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("sub edx, edx");
                     codigo.add("div ebx");
+                    codigo.add("mov var, eax");
+                    codigo.add("mov eax, var");
                     cont++;
                 }else{
                     codigo.add("mov ebx, " + valor2);
+                    codigo.add("sub edx, edx");
                     codigo.add("div ebx");
+                    codigo.add("mov var, eax");
+                    codigo.add("mov eax, var");
                     cont++;
                 }
             }
@@ -219,11 +227,13 @@ public class geradorCodigo{
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("add eax, ebx");
                     codigo.add("mov var, eax");
+                    codigo.add("mov eax, var");
                     cont++;
                 }else{
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("add eax, ebx");
                     codigo.add("mov var, eax");
+                    codigo.add("mov eax, var");
                     cont++;
                 }
             }
@@ -272,11 +282,13 @@ public class geradorCodigo{
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("sub eax, ebx");
                     codigo.add("mov var, eax");
+                    codigo.add("mov eax, var");
                     cont++;
                 }else{
                     codigo.add("mov ebx, " + valor2);
                     codigo.add("sub eax, ebx");
                     codigo.add("mov var, eax");
+                    codigo.add("mov eax, var");
                     cont++;
                 }
             }
@@ -284,13 +296,31 @@ public class geradorCodigo{
         
         for(tokens t : token){
             if(t.getNome().equals("TK_string")){
-                codigo.add("invoke MessageBox, NULL, offset szText, offset szCaption, MB_OK");
+                codigo.add("printf(\"A mensagem e: %s\", addr msg)");
+                codigo.add("printf(\"\\n\")");
+            }
+        }
+        
+        for(tokens t : token){
+            if(t.getNome().equals("TK_escreva")){
+                int indexAtual = token.indexOf(t);
+                if(token.get(indexAtual + 2).getNome().equals("TK_variavel")){
+                    codigo.add("printf(\"O valor e: %d\", var)");
+                    codigo.add("printf(\"\\n\")");
+                }
+            }
+        }
+        
+        for(tokens t : token){
+            if(t.getNome().equals("TK_leia")){
+                codigo.add("printf(\"O valor e: %d\", var)");
+                codigo.add("printf(\"\\n\")");
             }
         }
 
        for(tokens t : token){
             if(t.getNome().equals("TK_fim")){
-                codigo.add("invoke ExitProcess, NULL");
+                codigo.add("inkey");
                 codigo.add("end start");
             }
         }
@@ -304,7 +334,7 @@ public class geradorCodigo{
             }
             System.out.println("\nGeração de codigo realizada com sucesso.");
         } catch (IOException e){
-            System.out.println("ERRO: Problema na criação do arquivo -> "+e);
+            System.out.println("ERRO: Problema na criação do arquivo -> \n"+e);
         }
     }
 }
