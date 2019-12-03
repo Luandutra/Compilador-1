@@ -1,7 +1,9 @@
 inicio
-inteiro a = 4 ;
-inteiro b = 2 ;
-inteiro c = 5 ;
-a = a + b ;
-escreva ( a ) ;
+inteiro a = 5 ;
+inteiro b = 1 ;
+enquanto ( a > 5 ) {
+b = b * a ;
+a -- ;
+}
+escreva ( b ) ;
 fim

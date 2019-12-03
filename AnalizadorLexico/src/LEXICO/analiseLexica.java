@@ -13,8 +13,8 @@ public class analiseLexica {
         ArrayList<tokens> token = new ArrayList<>();
         ArrayList<erro> erros = new ArrayList<>();
         LinkedList<String> copiaTokens = new LinkedList();
-        boolean modoString = false;
         String texto = "";
+        boolean modoString = false;
         
         for(int x = 0; x < arq.size() - 1; x++){
             try {

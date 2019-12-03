@@ -17,10 +17,11 @@ public class analiseSemantica {
     }
     
     public static void variaveisIniciadas(ArrayList<String> argumentos, ArrayList<tokens> token){
-        log = "";
-        logErro = "";
+        
         ArrayList<String> varGeral = new ArrayList<>();
         ArrayList<String> varIniciadas = new ArrayList<>();
+        log = "";
+        logErro = "";
         
         log += ("\nInicio da verificação de declaração de variáveis.\n");
         
