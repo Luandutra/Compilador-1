@@ -11,6 +11,7 @@ enquanto ( d < a ) {
 escreva ( d ) ;
 d ++ ;
 }
+escreva ( d ) ;
 }
 }
 se ( b > a ) {
@@ -21,6 +22,7 @@ enquanto ( d < b ) {
 escreva ( d ) ;
 d ++ ;
 }
+escreva ( d ) ;
 }
 }
 se ( c > a ) {
@@ -31,6 +33,7 @@ enquanto ( d < c ) {
 escreva ( d ) ;
 d ++ ;
 }
+escreva ( d ) ;
 }
 }
 fim

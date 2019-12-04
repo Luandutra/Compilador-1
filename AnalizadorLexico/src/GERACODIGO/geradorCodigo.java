@@ -65,6 +65,16 @@ public class geradorCodigo{
                     numVar++;
                 }
             }
+            
+            controle = 0;
+            if(t.getNome().equals("TK_se") | t.getNome().equals("TK_enquanto") ){
+                if(liberaSe == false){
+                    codigo.add("var"+numVar+" dd 1");
+                    controle++;
+                    numVar++;
+                    liberaSe = true;
+                }
+            }
         }
 
         log.add("\nInicia uma seção de código.");
@@ -75,10 +85,11 @@ public class geradorCodigo{
         controle = 0;
         numMsg = 0;
         numVar = 0;
+        liberaSe = false;
+        liberaEnq = false;
         for(tokens t : token){
             controle = 0;
             if(t.getNome().equals("TK_se")){
-                liberaSe = true;
                 indexAtual = token.indexOf(t);
                 if(token.get(indexAtual + 2).getNome().equals("TK_variavel")){
                     String variavel = token.get(indexAtual + 2).getLexemas();
@@ -130,12 +141,12 @@ public class geradorCodigo{
                     codigo.add(".if eax " + sinal + " ebx");
                     controle++;
                     contSe++;
+                    liberaSe = true;
                 }
             }
             
             controle = 0;
             if(t.getNome().equals("TK_enquanto")){
-                liberaEnq = true;
                 indexAtual = token.indexOf(t);
                 if(token.get(indexAtual + 2).getNome().equals("TK_variavel")){
                     String variavel = token.get(indexAtual + 2).getLexemas();
@@ -187,6 +198,7 @@ public class geradorCodigo{
                     codigo.add(".while eax " + sinal + " ebx");
                     controle++;
                     contEnq++;
+                    liberaEnq = true;
                 }
             }
             
@@ -458,13 +470,16 @@ public class geradorCodigo{
             if(t.getNome().equals("TK_string")){
                 log.add("Encontrou token de string.");
                 log.add("Incluindo codigo alimentado.");
+                codigo.add("push eax");
                 codigo.add("printf(\"%s\", addr msg"+numMsg+")");
                 codigo.add("printf(\"\\n\")");
+                codigo.add("pop eax");
                 numMsg++;
             }
             
             log.add("\nBloco TK_escreva:");
             log.add("Buscando token de escreva.");
+            controle = 0;
             if(t.getNome().equals("TK_escreva")){
                 log.add("Encontrou token de escreva.");
                 indexAtual = token.indexOf(t);
@@ -472,20 +487,30 @@ public class geradorCodigo{
                     log.add("Encontrou token de variavel.");
                     log.add("Incluindo codigo alimentado.");
                     if(liberaSe = true){
-                        codigo.add("push eax");
-                        codigo.add("printf(\"%d\", eax)");
-                        codigo.add("printf(\"\\n\")");
-                        codigo.add("pop eax");
+                        if(controle <= 0){
+                            codigo.add("push eax");
+                            codigo.add("mov var"+numVar+", eax");
+                            codigo.add("mov eax, var"+numVar);
+                            codigo.add("printf(\"%d\", eax)");
+                            codigo.add("printf(\"\\n\")");
+                            codigo.add("pop eax");
+                            liberaSe = false;
+                            controle++;
+                        }
                     }
                     else if(liberaEnq = true){
                         codigo.add("push eax");
+                        codigo.add("mov var"+numVar+", eax");
+                        codigo.add("mov eax, var"+numVar);
                         codigo.add("printf(\"%d\", eax)");
                         codigo.add("printf(\"\\n\")");
                         codigo.add("pop eax");
                     }
                     else{
+                        codigo.add("push eax");
                         codigo.add("printf(\"O valor e: %d\", var"+numVar+")");
                         codigo.add("printf(\"\\n\")");
+                        codigo.add("pop eax");
                         numVar++;
                     }
                 }
@@ -520,7 +545,7 @@ public class geradorCodigo{
                             }
                         }
                     }
-                    codigo.add("inc eax");
+                    codigo.add("dec eax");
                     controle++; 
                 }
             }
