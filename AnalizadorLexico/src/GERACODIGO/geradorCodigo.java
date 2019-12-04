@@ -64,6 +64,8 @@ public class geradorCodigo{
                     controle++;
                     numVar++;
                 }
+                codigo.add("var"+numVar+" dd 1");
+                numVar++;
             }
             
             log.add("\nBloco TK_se e TK_enquanto:");
