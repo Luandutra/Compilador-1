@@ -51,9 +51,9 @@ public class geradorCodigo{
                 }
             }
             
-            controle = 0;
             log.add("\nBloco geral de operadores matematicos:");
             log.add("Buscando operadores matematicos.");
+            controle = 0;
             if(t.getNome().equals("TK_mult") | t.getNome().equals("TK_soma") 
                     | t.getNome().equals("TK_div") | t.getNome().equals("TK_sub") 
                     | t.getNome().equals("TK_leia")){
@@ -66,9 +66,13 @@ public class geradorCodigo{
                 }
             }
             
+            log.add("\nBloco TK_se e TK_enquanto:");
+            log.add("Buscando tokens.");
             controle = 0;
             if(t.getNome().equals("TK_se") | t.getNome().equals("TK_enquanto") ){
+                log.add("Encontrou tokens.");
                 if(liberaSe == false){
+                    log.add("Incluindo codigo alimentado.");
                     codigo.add("var"+numVar+" dd 1");
                     controle++;
                     numVar++;
@@ -87,16 +91,22 @@ public class geradorCodigo{
         numVar = 0;
         liberaSe = false;
         liberaEnq = false;
+        
         for(tokens t : token){
+            log.add("\nBloco TK_se:");
+            log.add("Buscando token se.");
             controle = 0;
             if(t.getNome().equals("TK_se")){
+                log.add("Encontrou token se.");
                 indexAtual = token.indexOf(t);
                 if(token.get(indexAtual + 2).getNome().equals("TK_variavel")){
+                    log.add("Encontrou token de variavel.");
                     String variavel = token.get(indexAtual + 2).getLexemas();
                     for(tokens t1 : token){
                         if(t1.getLexemas().equals(variavel)){
                             int indexAtual1 = token.indexOf(t1);
                             if(token.get(indexAtual1 - 1).getNome().equals("TK_int")){
+                                log.add("Encontrou token de declaração.");
                                 valor1 = token.get(indexAtual1 + 2).getLexemas();
                             }
                         }
@@ -105,6 +115,7 @@ public class geradorCodigo{
                     if(token.get(indexAtual + 2).getNome().equals("TK_numpos") 
                             | token.get(indexAtual + 2).getNome().equals("TK_neg")){
                         int indexAtual1 = token.indexOf(t);
+                        log.add("Encontrou token de numero.");
                         valor1 = token.get(indexAtual1 + 2).getLexemas();
                     }
                 }
@@ -112,13 +123,16 @@ public class geradorCodigo{
                         | token.get(indexAtual + 3).getNome().equals("TK_maior") 
                         | token.get(indexAtual + 3).getNome().equals("TK_menor") 
                         | token.get(indexAtual + 3).getNome().equals("TK_diferente")){
+                    log.add("Encontrou token de sinal.");
                     sinal = token.get(indexAtual + 3).getLexemas();
                     if(token.get(indexAtual + 4).getNome().equals("TK_variavel")){
+                        log.add("Encontrou token de variavel.");
                         String variavel2 = token.get(indexAtual + 4).getLexemas();
                         for(tokens t2 : token){
                             if(t2.getLexemas().equals(variavel2)){
                                 int indexAtual2 = token.indexOf(t2);
                                 if(token.get(indexAtual2 - 1).getNome().equals("TK_int")){
+                                    log.add("Encontrou token de declaração.");
                                     valor2 = token.get(indexAtual2 + 2).getLexemas();
                                 }
                             }
@@ -127,15 +141,16 @@ public class geradorCodigo{
                 } else{
                     if(token.get(indexAtual + 4).getNome().equals("TK_numpos") 
                             | token.get(indexAtual + 4).getNome().equals("TK_neg")){
+                        log.add("Encontrou token de numero.");
                         int indexAtual1 = token.indexOf(t);
                         valor2 = token.get(indexAtual1 + 4).getLexemas();
                     }
                 }
                 if(controle <= 0){
+                    log.add("Incluindo codigo alimentado.");
                     if(sinal.equals("<>")){
                         sinal = "!=";
                     }
-                    log.add("Incluindo codigo alimentado.");
                     codigo.add("mov eax, " + valor1);
                     codigo.add("mov ebx, " + valor2);
                     codigo.add(".if eax " + sinal + " ebx");
@@ -145,15 +160,20 @@ public class geradorCodigo{
                 }
             }
             
+            log.add("\nBloco TK_enquanto:");
+            log.add("Buscando token de enquanto.");
             controle = 0;
             if(t.getNome().equals("TK_enquanto")){
+                log.add("Encontrou token de enquanto.");
                 indexAtual = token.indexOf(t);
                 if(token.get(indexAtual + 2).getNome().equals("TK_variavel")){
+                    log.add("Encontrou token de variavel.");
                     String variavel = token.get(indexAtual + 2).getLexemas();
                     for(tokens t1 : token){
                         if(t1.getLexemas().equals(variavel)){
                             int indexAtual1 = token.indexOf(t1);
                             if(token.get(indexAtual1 - 1).getNome().equals("TK_int")){
+                                log.add("Encontrou token de declaração.");
                                 valor1 = token.get(indexAtual1 + 2).getLexemas();
                             }
                         }
@@ -161,6 +181,7 @@ public class geradorCodigo{
                 } else{
                     if(token.get(indexAtual + 2).getNome().equals("TK_numpos") 
                             | token.get(indexAtual + 2).getNome().equals("TK_neg")){
+                        log.add("Encontrou token de numero.");
                         int indexAtual1 = token.indexOf(t);
                         valor1 = token.get(indexAtual1 + 2).getLexemas();
                     }
@@ -169,13 +190,16 @@ public class geradorCodigo{
                         | token.get(indexAtual + 3).getNome().equals("TK_maior") 
                         | token.get(indexAtual + 3).getNome().equals("TK_menor")
                         | token.get(indexAtual + 3).getNome().equals("TK_diferente")){
+                    log.add("Encontrou token de sinal.");
                     sinal = token.get(indexAtual + 3).getLexemas();
                     if(token.get(indexAtual + 4).getNome().equals("TK_variavel")){
+                        log.add("Encontrou token de variavel.");
                         String variavel2 = token.get(indexAtual + 4).getLexemas();
                         for(tokens t2 : token){
                             if(t2.getLexemas().equals(variavel2)){
                                 int indexAtual2 = token.indexOf(t2);
                                 if(token.get(indexAtual2 - 1).getNome().equals("TK_int")){
+                                    log.add("Encontrou token de declaração.");
                                     valor2 = token.get(indexAtual2 + 2).getLexemas();
                                 }
                             }
@@ -184,15 +208,16 @@ public class geradorCodigo{
                 } else{
                     if(token.get(indexAtual + 4).getNome().equals("TK_numpos") 
                             | token.get(indexAtual + 4).getNome().equals("TK_neg")){
+                        log.add("Encontrou token de numero.");
                         int indexAtual1 = token.indexOf(t);
                         valor2 = token.get(indexAtual1 + 4).getLexemas();
                     }
                 }
                 if(controle <= 0){
+                    log.add("Incluindo codigo alimentado.");
                     if(sinal.equals("<>")){
                         sinal = "!=";
                     }
-                    log.add("Incluindo codigo alimentado.");
                     codigo.add("mov eax, " + valor1);
                     codigo.add("mov ebx, " + valor2);
                     codigo.add(".while eax " + sinal + " ebx");
@@ -202,9 +227,9 @@ public class geradorCodigo{
                 }
             }
             
-            controle = 0;
             log.add("\nBloco TK_mult:");
             log.add("Buscando token de multiplicação.");
+            controle = 0;
             if(t.getNome().equals("TK_mult")){
                 log.add("Encontrou token de multiplicação.");
                 indexAtual = token.indexOf(t);
@@ -485,8 +510,8 @@ public class geradorCodigo{
                 indexAtual = token.indexOf(t);
                 if(token.get(indexAtual + 2).getNome().equals("TK_variavel")){
                     log.add("Encontrou token de variavel.");
-                    log.add("Incluindo codigo alimentado.");
                     if(liberaSe = true){
+                        log.add("Incluindo codigo alimentado.");
                         if(controle <= 0){
                             codigo.add("push eax");
                             codigo.add("mov var"+numVar+", eax");
@@ -499,6 +524,7 @@ public class geradorCodigo{
                         }
                     }
                     else if(liberaEnq = true){
+                        log.add("Incluindo codigo alimentado.");
                         codigo.add("push eax");
                         codigo.add("mov var"+numVar+", eax");
                         codigo.add("mov eax, var"+numVar);
@@ -507,6 +533,7 @@ public class geradorCodigo{
                         codigo.add("pop eax");
                     }
                     else{
+                        log.add("Incluindo codigo alimentado.");
                         codigo.add("push eax");
                         codigo.add("printf(\"O valor e: %d\", var"+numVar+")");
                         codigo.add("printf(\"\\n\")");
@@ -516,48 +543,64 @@ public class geradorCodigo{
                 }
             }
             
+            log.add("\nBloco TK_variavel:");
+            log.add("Buscando token de variavel.");
             if(t.getNome().equals("TK_variavel")){
+                log.add("Encontrou token de variavel.");
                 indexAtual = token.indexOf(t);
                 if(token.get(indexAtual + 1).getNome().equals("TK_incremento")){
+                    log.add("Encontrou token de incremento.");
                     String variavel = token.get(indexAtual).getLexemas();
                     for(tokens t1 : token){
                         if(t1.getLexemas().equals(variavel)){
                             int indexAtual1 = token.indexOf(t1);
                             if(token.get(indexAtual1 - 1).getNome().equals("TK_int")){
+                                log.add("Encontrou token de declaração.");
                                 valor1 = token.get(indexAtual1 + 2).getLexemas();
                             }
                         }
                     }
+                    log.add("Incluindo codigo alimentado.");
                     codigo.add("inc eax");
                     controle++; 
                 }
             }
             
+            log.add("\nBloco TK_variavel:");
+            log.add("Buscando token de variavel.");
             if(t.getNome().equals("TK_variavel")){
+                log.add("Encontrou token de variavel.");
                 indexAtual = token.indexOf(t);
                 if(token.get(indexAtual + 1).getNome().equals("TK_decremento")){
+                    log.add("Encontrou token de decremento.");
                     String variavel = token.get(indexAtual).getLexemas();
                     for(tokens t1 : token){
                         if(t1.getLexemas().equals(variavel)){
                             int indexAtual1 = token.indexOf(t1);
                             if(token.get(indexAtual1 - 1).getNome().equals("TK_int")){
+                                log.add("Encontrou token de declaração.");
                                 valor1 = token.get(indexAtual1 + 2).getLexemas();
                             }
                         }
                     }
+                    log.add("Incluindo codigo alimentado.");
                     codigo.add("dec eax");
                     controle++; 
                 }
             }
             
+            log.add("\nBloco TK_leia:");
+            log.add("Buscando token de leia.");
             if(t.getNome().equals("TK_leia")){
                 indexAtual = token.indexOf(t);
                 if(token.get(indexAtual + 2).getNome().equals("TK_variavel")){
+                    log.add("Encontrou token de variavel.");
                     String variavel = token.get(indexAtual).getLexemas();
                     for(tokens t1 : token){
                         if(t1.getLexemas().equals(variavel)){
                             int indexAtual1 = token.indexOf(t1);
                             if(token.get(indexAtual1 - 1).getNome().equals("TK_int")){
+                                log.add("Encontrou token de declaração.");
                                 valor1 = token.get(indexAtual1 + 2).getLexemas();
                             }
                         }
@@ -565,26 +608,37 @@ public class geradorCodigo{
                 }
                 else if(token.get(indexAtual + 2).getNome().equals("TK_numpos") 
                         | token.get(indexAtual + 2).getNome().equals("TK_numneg") ){
+                    log.add("Encontrou token de numero.");
                     valor1 = token.get(indexAtual + 2).getLexemas();
                 }
+                log.add("Incluindo codigo alimentado.");
                 codigo.add("mov eax, " + valor1);
                 codigo.add("mov var"+numVar+", eax");
                 codigo.add("mov eax, var"+numVar);
                 numVar++;
             }
             
+            log.add("\nBloco TK_senao:");
+            log.add("Buscando token de senao.");
             if(t.getNome().equals("TK_senao")){
+                log.add("Encontrou token de senao.");
+                log.add("Incluindo codigo alimentado.");
                 codigo.add(".else");
             }
             
+            log.add("\nBloco TK_fimbloco:");
+            log.add("Buscando token de fim de bloco.");
             if(t.getNome().equals("TK_fimbloco")){
+                log.add("Encontrou token de fim de bloco.");
                 if(liberaEnq = true){
+                    log.add("Incluindo codigo alimentado.");
                     while (contEnq > 0) {
                         codigo.add(".endw");
                         contEnq--;
                     }
                 }
                 if(liberaSe = true){
+                    log.add("Incluindo codigo alimentado.");
                     while (contSe > 0) {
                         codigo.add(".endif");
                         contSe--;
